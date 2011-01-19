@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<project name="Budget" default="build" basedir=".">
+	<property name="nant.settings.currentframework" value="net-4.0" />
+
+	<property name="debug" value="true" overwrite="false" />
+
+	<property name="dir.bin" value="bin" />
+	<property name="dir.bin.release" value="${dir.bin}/release" />
+	<property name="dir.bin.debug" value="${dir.bin}/debug" />
+
+	<if test="${debug == 'true'}">
+		<property name="dir.bin" value="${dir.bin.debug}" />
+	</if>
+	<if test="${debug == 'false'}">
+		<property name="dir.bin" value="${dir.bin.release}" />
+	</if>
+
+	<property name="dir.lib" value="lib" />
+
+	<property name="dir.src.app" value="vs/app" />
+	<property name="dir.src.model" value="vs/model" />
+	<property name="dir.src.edm" value="vs/model" />
+
+	<property name="model.name" value="BudgetModel" />
+	<property name="app.name" value="App" />
+
+
+	<target name="clean">
+		<delete dir="${dir.bin}" />
+	</target>	
+
+	<target name="build" depends="build-app,copy">
+		<echo message="building" />
+	</target>	
+
+	<target name="build-app" depends="build-model">
+		<csc target="winexe" output="${dir.bin}/${app.name}.exe" debug="${debug}">
+			<sources>
+				<include name="${dir.src.app}/*.cs" />
+				<include name="${dir.src.app}/Properties/*.cs" />
+			</sources>
+			<resources>
+				<include name="${dir.src.app}/*.resx" />
+			</resources>
+			<references>
+				<include name="System.dll" />
+				<include name="System.Core.dll" />
+				<include name="System.Data.dll" />
+				<include name="System.Data.DataSetExtensions.dll" />
+				<include name="System.Data.Entity.dll" />
+				<include name="System.Data.SqlServerCe.dll" />
+				<include name="System.Windows.Forms.dll" />
+				<include name="${dir.bin}/Budget.Model.dll"/>
+			</references>
+		</csc>
+	</target>
+
+	<target name="build-model" depends="gen-model">
+		<csc target="library" output="${dir.bin}/Budget.Model.dll" debug="${debug}">
+			<sources>
+				<include name="${dir.src.model}/*.cs" />
+				<include name="${dir.src.model}/Properties/*.cs" />
+			</sources>
+			<resources>
+				<include name="${dir.src.model}/*.csdl" />
+				<include name="${dir.src.model}/*.ssdl" />
+				<include name="${dir.src.model}/*.msl" />
+			</resources>
+			<references>
+				<include name="System.dll" />
+				<include name="System.Core.dll" />
+				<include name="System.Data.dll" />
+				<include name="System.Data.DataSetExtensions.dll" />
+				<include name="System.Data.Entity.dll" />
+				<include name="${dir.lib}/System.Data.SqlServerCe.dll" />
+			</references>
+		</csc>
+	</target>
+
+	<target name="gen-model">
+		<exec program="EdmGen.exe">
+			<arg value="/mode:EntityClassGeneration" />
+			<arg value="/language:CSharp" />
+			<arg value="/namespace:Budget.Model"/>
+			<arg value="/outobjectlayer:${dir.src.model}/${model.name}.cs" />
+			<arg value="/incsdl:${dir.src.edm}/${model.name}.csdl" />
+			<arg value="/inssdl:${dir.src.edm}/${model.name}.ssdl" />
+			<arg value="/inmsl:${dir.src.edm}/${model.name}.msl" />
+		</exec>
+	</target>
+
+	<target name="copy" depends="copy-lib,copy-config">
+	</target>
+
+	<target name="copy-lib">
+		<copy todir="${dir.bin}">
+			<fileset basedir="${dir.lib}">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="copy-metadata">
+		<copy todir="${dir.bin}">
+			<fileset basedir="${dir.src.edm}">
+				<include name="*.csdl" />
+				<include name="*.ssdl" />
+				<include name="*.msl" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="copy-config">
+		<copy tofile="${dir.bin}/${app.name}.exe.config" 
+			file="${dir.src.app}/app.config" />
+	</target>
+
+	<target name="run">
+		<exec program="${app.name}.exe" basedir="${dir.bin}" />
+	</target>
+
+	<target name="test" depends="build">
+	</target>
+
+</project>
+

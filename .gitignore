@@ -1,0 +1,8 @@
+*.exe
+*.dll
+*.suo
+bin/
+*/bin/
+*.user
+*/obj/
+

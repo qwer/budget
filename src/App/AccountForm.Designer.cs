@@ -31,8 +31,8 @@
 			this.components = new System.ComponentModel.Container();
 			this.accountControl1 = new Budget.App.AccountControl();
 			this.saveButton = new System.Windows.Forms.Button();
-			this.button1 = new System.Windows.Forms.Button();
 			this.iAccountViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.button1 = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.iAccountViewBindingSource)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -60,21 +60,22 @@
 			this.saveButton.UseVisualStyleBackColor = true;
 			this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
 			// 
+			// iAccountViewBindingSource
+			// 
+			this.iAccountViewBindingSource.DataSource = typeof(Budget.App.IAccountView);
+			// 
 			// button1
 			// 
 			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.button1.AutoSize = true;
 			this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.button1.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", this.iAccountViewBindingSource, "UndoCommand.CanExecute", true));
 			this.button1.Location = new System.Drawing.Point(311, 232);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(81, 32);
 			this.button1.TabIndex = 2;
 			this.button1.Text = "Отмена";
 			this.button1.UseVisualStyleBackColor = true;
-			// 
-			// iAccountViewBindingSource
-			// 
-			this.iAccountViewBindingSource.DataSource = typeof(Budget.App.IAccountView);
 			// 
 			// AccountForm
 			// 

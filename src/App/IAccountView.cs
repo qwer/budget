@@ -6,8 +6,8 @@ namespace Budget.App
 {
 	public interface IAccountView
 	{
-		ICommand SaveCommand { get; }
 		Account Account { get; }
-		void Undo();
+		ICommand SaveCommand { get; }
+		ICommand UndoCommand { get; }
 	}
 }

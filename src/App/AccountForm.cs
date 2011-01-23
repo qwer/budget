@@ -33,6 +33,13 @@ namespace Budget.App
 			base.OnShown(e);
 		}
 
+		protected override void OnClosing(CancelEventArgs e)
+		{
+			if (view.UndoCommand.CanExecute)
+				view.UndoCommand.Execute();
+			base.OnClosing(e);
+		}
+
 		private void saveButton_Click(object sender, EventArgs e)
 		{
 			view.SaveCommand.Execute();
@@ -41,7 +48,6 @@ namespace Budget.App
 
 		void button1_Click(object sender, EventArgs e)
 		{
-			view.Undo();
 			Close();
 		}
 	}

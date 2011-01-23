@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Budget.Model;
 
@@ -14,8 +15,7 @@ namespace Budget.App
 			this.db = db;
 		}
 
-		private ICommand saveCommand;
-
+		private SimpleCommand saveCommand;
 		public ICommand SaveCommand
 		{
 			get
@@ -27,21 +27,52 @@ namespace Budget.App
 			}
 		}
 
+		private SimpleCommand undoCommand;
+		public ICommand UndoCommand
+		{
+			get
+			{
+				if (undoCommand == null)
+					undoCommand = new SimpleCommand(
+						Undo, CanUndo);
+				return undoCommand;
+			}
+		}
+
 		private Account account;
 		public Account Account
 		{
 			get { return account; }
-			set { account = value; }
+			set 
+			{
+				if (account != null)
+					account.PropertyChanged -= AccountPropertyChanged;
+				account = value;
+				if (account != null)
+					account.PropertyChanged += AccountPropertyChanged;
+			}
 		}
 
 		private void Save()
 		{
-			db.Container.SaveChanges();
+			try
+			{
+				db.Container.SaveChanges();
+			}
+			catch (Exception e)
+			{
+				Error.Show(e);
+			}
 		}
 
-		public void Undo()
+		private bool CanSave()
 		{
-			var entry = db.Container.ObjectStateManager.GetObjectStateEntry(Account.EntityKey);
+			return account.Name.Length > 0;
+		}
+
+		private void Undo()
+		{
+			var entry = GetState(Account);
 
 			for (int i = 0; i < entry.OriginalValues.FieldCount; i++)
 			{
@@ -51,9 +82,21 @@ namespace Budget.App
 			entry.AcceptChanges();
 		}
 
-		bool CanSave()
+		private System.Data.Objects.ObjectStateEntry GetState(Account account)
 		{
-			return false;
+			return db.Container.ObjectStateManager.GetObjectStateEntry(account.EntityKey);
+		}
+
+		private bool CanUndo()
+		{
+			var entry = GetState(Account);
+			return 0 < Enumerable.Count(entry.GetModifiedProperties());
+		}
+
+		private void AccountPropertyChanged(object sender, PropertyChangedEventArgs e)
+		{
+			saveCommand.StateChanged();
+			undoCommand.StateChanged();
 		}
 	}
 }

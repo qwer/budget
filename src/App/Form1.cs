@@ -8,7 +8,6 @@ using System.Windows.Forms;
 
 using System.Data;
 using System.Data.Objects;
-using System.Threading.Tasks;
 
 using Budget.Model;
 
@@ -16,56 +15,30 @@ namespace Budget.App
 {
 	public partial class Form1 : Form
 	{
-		Db db;
+		IAccountsView view;
 
-		public Form1()
+		public Form1(IAccountsView view)
 		{
+			if (view == null)
+				throw new ArgumentNullException();
+
 			InitializeComponent();
-			db = new Db();
-			db.ConnectionStateChanged += this.ConnectionStateChanged;
+			this.view = view;
+			view.PropertyChanged += ViewPropertyChanged;
 		}
 
-		private void Form1_Load(object sender, EventArgs e)
-		{
-			Task task = new Task(Connect);
-			task.Start();
-		}
-
-		private void ConnectionStateChanged(object sender, PropertyChangedEventArgs e)
+		private void ViewPropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
 			if (InvokeRequired)
 			{
-				Invoke(new PropertyChangedEventHandler(ConnectionStateChanged), sender, e);
+				Invoke(new PropertyChangedEventHandler(ViewPropertyChanged), sender, e);
 				return;
 			}
 
-			toolStripStatusLabel1.Text = db.ConnectionState.ToString();
-			if (db.ConnectionState == ConnectionState.Open) 
-				Connected();
-		}
-
-		private void Connect()
-		{
-			try
-			{
-				db.Connect();
-			}
-			catch (Exception ex)
-			{
-				Error.Show(ex);
-			}
-
-			Invoke(new Action(Connected));
-		}
-
-		private void Connected()
-		{
-			if (db.ConnectionState != ConnectionState.Open)
-				return;
-
-			accountBindingSource.DataSource = db.Container.AccountSet;
-
-			LoadAccounts();
+			if (e.PropertyName == "Status") 
+				toolStripStatusLabel1.Text = view.Status;
+			else if (e.PropertyName == "Accounts")
+				LoadAccounts();
 		}
 
 		Dictionary<Account, ListViewItem> accountToItems = new Dictionary<Account,ListViewItem>();
@@ -75,7 +48,7 @@ namespace Budget.App
 			listView1.Items.Clear();
 			accountToItems.Clear();
 
-			foreach (Account a in db.Container.AccountSet)
+			foreach (Account a in view.Accounts)
 			{
 				int groupIndex;
 				switch (a.Type)
@@ -96,7 +69,7 @@ namespace Budget.App
 				listView1.Items.Add(i);
 				accountToItems[a] = i;
 
-				a.PropertyChanged += Account_PropertyChanged;
+				a.PropertyChanged += Account_PropertyChanged; /* XXX ref */
 			}
 		}
 
@@ -115,22 +88,7 @@ namespace Budget.App
 			if (listView1.SelectedItems.Count != 1)
 				return;
 
-			ShowAccount((Account) listView1.SelectedItems[0].Tag);
-		}
-
-		AccountForm accountForm;
-		AccountView accountView;
-
-		private void ShowAccount(Account account)
-		{
-			if (accountView == null)
-				accountView = new AccountView(db);
-			if (accountForm == null)
-				accountForm = new AccountForm(accountView);
-
-			//MessageBox.Show(account.Name);
-			accountView.Account = account;
-			accountForm.ShowDialog();
+			view.ShowAccount((Account) listView1.SelectedItems[0].Tag);
 		}
 	}
 }

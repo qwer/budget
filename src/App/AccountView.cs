@@ -89,8 +89,7 @@ namespace Budget.App
 
 		private bool CanUndo()
 		{
-			var entry = GetState(Account);
-			return 0 < Enumerable.Count(entry.GetModifiedProperties());
+			return 0 < Enumerable.Count(GetState(Account).GetModifiedProperties());
 		}
 
 		private void AccountPropertyChanged(object sender, PropertyChangedEventArgs e)

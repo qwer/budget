@@ -39,9 +39,9 @@
 			this.listView1 = new System.Windows.Forms.ListView();
 			this.accountNameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.accountBalanceColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.accountTargetColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.incomesTabPage = new System.Windows.Forms.TabPage();
 			this.historyTabPage = new System.Windows.Forms.TabPage();
-			this.accountTargetColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.accountBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.statusStrip1.SuspendLayout();
 			this.tabControl.SuspendLayout();
@@ -128,6 +128,11 @@
 			this.accountBalanceColumn.Text = "Баланс";
 			this.accountBalanceColumn.Width = 287;
 			// 
+			// accountTargetColumn
+			// 
+			this.accountTargetColumn.Text = "Цель";
+			this.accountTargetColumn.Width = 231;
+			// 
 			// incomesTabPage
 			// 
 			this.incomesTabPage.Location = new System.Drawing.Point(4, 31);
@@ -148,11 +153,6 @@
 			this.historyTabPage.Text = "История";
 			this.historyTabPage.UseVisualStyleBackColor = true;
 			// 
-			// accountTargetColumn
-			// 
-			this.accountTargetColumn.Text = "Цель";
-			this.accountTargetColumn.Width = 231;
-			// 
 			// accountBindingSource
 			// 
 			this.accountBindingSource.DataSource = typeof(Budget.Model.Account);
@@ -167,7 +167,6 @@
 			this.Font = new System.Drawing.Font("Tahoma", 8.099999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "Form1";
 			this.Text = "Form1";
-			this.Load += new System.EventHandler(this.Form1_Load);
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
 			this.tabControl.ResumeLayout(false);

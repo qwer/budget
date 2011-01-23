@@ -28,9 +28,12 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.accountControl1 = new Budget.App.AccountControl();
 			this.saveButton = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
+			this.iAccountViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			((System.ComponentModel.ISupportInitialize)(this.iAccountViewBindingSource)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// accountControl1
@@ -45,8 +48,10 @@
 			// 
 			// saveButton
 			// 
+			this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.saveButton.AutoSize = true;
 			this.saveButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.saveButton.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", this.iAccountViewBindingSource, "SaveCommand.CanExecute", true));
 			this.saveButton.Location = new System.Drawing.Point(190, 232);
 			this.saveButton.Name = "saveButton";
 			this.saveButton.Size = new System.Drawing.Size(106, 32);
@@ -57,6 +62,7 @@
 			// 
 			// button1
 			// 
+			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.button1.AutoSize = true;
 			this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.button1.Location = new System.Drawing.Point(311, 232);
@@ -65,6 +71,10 @@
 			this.button1.TabIndex = 2;
 			this.button1.Text = "Отмена";
 			this.button1.UseVisualStyleBackColor = true;
+			// 
+			// iAccountViewBindingSource
+			// 
+			this.iAccountViewBindingSource.DataSource = typeof(Budget.App.IAccountView);
 			// 
 			// AccountForm
 			// 
@@ -77,6 +87,7 @@
 			this.Font = new System.Drawing.Font("Tahoma", 8.099999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "AccountForm";
 			this.Text = "AccountForm";
+			((System.ComponentModel.ISupportInitialize)(this.iAccountViewBindingSource)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -87,5 +98,6 @@
 		private AccountControl accountControl1;
 		private System.Windows.Forms.Button saveButton;
 		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.BindingSource iAccountViewBindingSource;
 	}
 }

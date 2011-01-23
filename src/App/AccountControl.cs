@@ -25,7 +25,8 @@ namespace Budget.App
 			set
 			{
 				account = value;
-				accountBindingSource.DataSource = account;
+				if (account != null)
+					accountBindingSource.DataSource = account;
 			}
 		}
 	}

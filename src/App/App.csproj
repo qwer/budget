@@ -79,6 +79,8 @@
     <Compile Include="AccountForm.Designer.cs">
       <DependentUpon>AccountForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AccountView.cs" />
+    <Compile Include="Command.cs" />
     <Compile Include="Db.cs" />
     <Compile Include="Error.cs" />
     <Compile Include="Form1.cs">
@@ -87,6 +89,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="IAccountView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AccountControl.resx">
@@ -110,6 +113,7 @@
     </Compile>
     <None Include="app.config" />
     <None Include="Properties\DataSources\Budget.Model.Account.datasource" />
+    <None Include="Properties\DataSources\IAccountView.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

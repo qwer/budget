@@ -13,55 +13,36 @@ namespace Budget.App
 {
 	public partial class AccountForm : Form
 	{
-		Db db;
+		IAccountView view;
 
-		public AccountForm(Db db)
+		public AccountForm(IAccountView view)
 		{
-			InitializeComponent();
-			this.db = db;
+			if (view == null)
+				throw new ArgumentNullException();
 
+			InitializeComponent();
+
+			this.view = view;
+			iAccountViewBindingSource.DataSource = view;
 			button1.Click += new EventHandler(button1_Click);
 		}
 
-		private Account account;
-		public Account Account
+		protected override void OnShown(EventArgs e)
 		{
-			get { return account; }
-			set
-			{
-				account = value;
-				accountControl1.Account = value;
-			}
+			accountControl1.Account = view.Account;
+			base.OnShown(e);
 		}
 
 		private void saveButton_Click(object sender, EventArgs e)
 		{
-			SaveChanges();
+			view.SaveCommand.Execute();
 			Close();
 		}
 
 		void button1_Click(object sender, EventArgs e)
 		{
-			UndoChanges();
+			view.Undo();
 			Close();
 		}
-
-		private void SaveChanges()
-		{
-			db.Container.SaveChanges();
-		}
-
-		private void UndoChanges()
-		{
-			var entry = db.Container.ObjectStateManager.GetObjectStateEntry(Account.EntityKey);
-
-			for (int i = 0; i < entry.OriginalValues.FieldCount; i++)
-			{
-				entry.CurrentValues.SetValue(i, entry.OriginalValues[i]);
-			}
-
-			entry.AcceptChanges();
-		}
-
 	}
 }

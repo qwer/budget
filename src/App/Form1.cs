@@ -119,13 +119,17 @@ namespace Budget.App
 		}
 
 		AccountForm accountForm;
+		AccountView accountView;
 
 		private void ShowAccount(Account account)
 		{
+			if (accountView == null)
+				accountView = new AccountView(db);
 			if (accountForm == null)
-				accountForm = new AccountForm(db);
+				accountForm = new AccountForm(accountView);
+
 			//MessageBox.Show(account.Name);
-			accountForm.Account = account;
+			accountView.Account = account;
 			accountForm.ShowDialog();
 		}
 	}

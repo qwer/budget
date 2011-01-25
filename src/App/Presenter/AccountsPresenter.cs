@@ -60,18 +60,18 @@ namespace Budget.App.Presenter
 			get { return db.Container.AccountSet; }
 		}
 
-		AccountForm accountForm;
-		AccountPresenter accountView;
+		IAccountView accountView;
+		IAccountPresenter accountPresenter;
 
 		public void ShowAccount(Account account)
 		{
+			if (accountPresenter == null)
+				accountPresenter = new AccountPresenter(db);
 			if (accountView == null)
-				accountView = new AccountPresenter(db);
-			if (accountForm == null)
-				accountForm = new AccountForm(accountView);
+				accountView = new AccountForm(accountPresenter);
 
-			accountView.Account = account;
-			accountForm.ShowDialog();
+			accountPresenter.Account = account;
+			accountView.Show();
 		}
 	}
 }

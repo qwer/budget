@@ -12,38 +12,44 @@ using Budget.App.Presenter;
 
 namespace Budget.App.View
 {
-	public partial class AccountForm : Form
+	public partial class AccountForm : Form, IAccountView
 	{
-		IAccountPresenter view;
+		IAccountPresenter presenter;
 
-		public AccountForm(IAccountPresenter view)
+		public AccountForm(IAccountPresenter presenter)
 		{
-			if (view == null)
+			if (presenter == null)
 				throw new ArgumentNullException();
 
 			InitializeComponent();
 
-			this.view = view;
-			iAccountViewBindingSource.DataSource = view;
+			this.presenter = presenter;
+			iAccountViewBindingSource.DataSource = presenter;
 			button1.Click += new EventHandler(button1_Click);
+		}
+
+		void IAccountView.Show()
+		{
+			ShowDialog();
 		}
 
 		protected override void OnShown(EventArgs e)
 		{
-			accountControl1.Account = view.Account;
+			accountControl1.Account = presenter.Account;
 			base.OnShown(e);
 		}
 
 		protected override void OnClosing(CancelEventArgs e)
 		{
-			if (view.UndoCommand.CanExecute)
-				view.UndoCommand.Execute();
-			base.OnClosing(e);
+			if (presenter.UndoCommand.CanExecute)
+				presenter.UndoCommand.Execute();
+			base.Hide();
+			//base.OnClosing(e);
 		}
 
 		private void saveButton_Click(object sender, EventArgs e)
 		{
-			view.SaveCommand.Execute();
+			presenter.SaveCommand.Execute();
 			Close();
 		}
 

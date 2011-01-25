@@ -14,18 +14,18 @@ using Budget.App.Presenter;
 
 namespace Budget.App.View
 {
-	public partial class Form1 : Form
+	public partial class Form1 : Form, IAccountsView
 	{
-		IAccountsPresenter view;
+		IAccountsPresenter presenter;
 
-		public Form1(IAccountsPresenter view)
+		public Form1(IAccountsPresenter presenter)
 		{
-			if (view == null)
+			if (presenter == null)
 				throw new ArgumentNullException();
 
 			InitializeComponent();
-			this.view = view;
-			view.PropertyChanged += ViewPropertyChanged;
+			this.presenter = presenter;
+			presenter.PropertyChanged += ViewPropertyChanged;
 		}
 
 		private void ViewPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -37,7 +37,7 @@ namespace Budget.App.View
 			}
 
 			if (e.PropertyName == "Status") 
-				toolStripStatusLabel1.Text = view.Status;
+				toolStripStatusLabel1.Text = presenter.Status;
 			else if (e.PropertyName == "Accounts")
 				LoadAccounts();
 		}
@@ -49,7 +49,7 @@ namespace Budget.App.View
 			listView1.Items.Clear();
 			accountToItems.Clear();
 
-			foreach (Account a in view.Accounts)
+			foreach (Account a in presenter.Accounts)
 			{
 				int groupIndex;
 				switch (a.Type)
@@ -89,7 +89,7 @@ namespace Budget.App.View
 			if (listView1.SelectedItems.Count != 1)
 				return;
 
-			view.ShowAccount((Account) listView1.SelectedItems[0].Tag);
+			presenter.ShowAccount((Account) listView1.SelectedItems[0].Tag);
 		}
 	}
 }

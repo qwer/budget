@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using Budget.Model;
  
 namespace Budget.App.Presenter
 {
 	public interface IAccountPresenter
 	{
-		Account Account { get; }
+		Account Account { get; set; }
 		ICommand SaveCommand { get; }
 		ICommand UndoCommand { get; }
 	}

@@ -67,7 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Presenter\AccountsView.cs" />
+    <Compile Include="Presenter\AccountsPresenter.cs" />
     <Compile Include="View\AccountControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -80,7 +80,7 @@
     <Compile Include="View\AccountForm.Designer.cs">
       <DependentUpon>AccountForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presenter\AccountView.cs" />
+    <Compile Include="Presenter\AccountPresenter.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="Db.cs" />
     <Compile Include="Error.cs" />
@@ -90,8 +90,8 @@
     <Compile Include="View\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presenter\IAccountsView.cs" />
-    <Compile Include="Presenter\IAccountView.cs" />
+    <Compile Include="Presenter\IAccountsPresenter.cs" />
+    <Compile Include="Presenter\IAccountPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="View\AccountControl.resx">

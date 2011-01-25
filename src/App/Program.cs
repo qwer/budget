@@ -25,7 +25,7 @@ namespace Budget.App
 			Task task = new Task(Connect);
 			task.Start();
 
-			AccountsView view = new AccountsView(db);
+			AccountsPresenter view = new AccountsPresenter(db);
 			Application.Run(new Form1(view));
 		}
 

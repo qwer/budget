@@ -62,7 +62,7 @@
 			// 
 			// iAccountViewBindingSource
 			// 
-			this.iAccountViewBindingSource.DataSource = typeof(Budget.App.Presenter.IAccountView);
+			this.iAccountViewBindingSource.DataSource = typeof(Budget.App.Presenter.IAccountPresenter);
 			// 
 			// button1
 			// 

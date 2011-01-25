@@ -8,7 +8,7 @@ using Budget.Model;
 
 namespace Budget.App.Presenter
 {
-	public interface IAccountsView : INotifyPropertyChanged
+	public interface IAccountsPresenter : INotifyPropertyChanged
 	{
 		IEnumerable<Account> Accounts { get; }
 		string Status { get; }

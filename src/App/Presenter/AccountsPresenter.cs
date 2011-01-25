@@ -20,11 +20,11 @@ namespace Budget.App.Presenter
 		}
 	}
 
-	public class AccountsView : ObservableObject, IAccountsView
+	public class AccountsPresenter : ObservableObject, IAccountsPresenter
 	{
 		Db db;
 
-		public AccountsView(Db db)
+		public AccountsPresenter(Db db)
 		{
 			this.db = db;
 			db.ConnectionStateChanged += this.ConnectionStateChanged;
@@ -61,12 +61,12 @@ namespace Budget.App.Presenter
 		}
 
 		AccountForm accountForm;
-		AccountView accountView;
+		AccountPresenter accountView;
 
 		public void ShowAccount(Account account)
 		{
 			if (accountView == null)
-				accountView = new AccountView(db);
+				accountView = new AccountPresenter(db);
 			if (accountForm == null)
 				accountForm = new AccountForm(accountView);
 

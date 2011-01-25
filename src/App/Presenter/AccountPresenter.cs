@@ -6,11 +6,11 @@ using Budget.Model;
 
 namespace Budget.App.Presenter
 {
-	class AccountView : IAccountView
+	class AccountPresenter : IAccountPresenter
 	{
 		Db db;
 
-		public AccountView(Db db)
+		public AccountPresenter(Db db)
 		{
 			this.db = db;
 		}

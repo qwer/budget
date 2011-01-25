@@ -14,9 +14,9 @@ namespace Budget.App.View
 {
 	public partial class AccountForm : Form
 	{
-		IAccountView view;
+		IAccountPresenter view;
 
-		public AccountForm(IAccountView view)
+		public AccountForm(IAccountPresenter view)
 		{
 			if (view == null)
 				throw new ArgumentNullException();

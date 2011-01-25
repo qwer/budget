@@ -4,7 +4,7 @@ using Budget.Model;
  
 namespace Budget.App.Presenter
 {
-	public interface IAccountView
+	public interface IAccountPresenter
 	{
 		Account Account { get; }
 		ICommand SaveCommand { get; }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Budget.Model;
  
-namespace Budget.App
+namespace Budget.App.Presenter
 {
 	public interface IAccountView
 	{

@@ -4,6 +4,9 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Threading.Tasks;
 
+using Budget.App.Presenter;
+using Budget.App.View;
+
 namespace Budget.App
 {
 	static class Program

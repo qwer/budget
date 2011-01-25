@@ -8,8 +8,9 @@ using System.Text;
 using System.Windows.Forms;
 
 using Budget.Model;
+using Budget.App.Presenter;
 
-namespace Budget.App
+namespace Budget.App.View
 {
 	public partial class AccountControl : UserControl
 	{

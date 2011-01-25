@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using Budget.Model;
 
-namespace Budget.App
+namespace Budget.App.Presenter
 {
 	class AccountView : IAccountView
 	{

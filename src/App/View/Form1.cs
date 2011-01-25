@@ -10,8 +10,9 @@ using System.Data;
 using System.Data.Objects;
 
 using Budget.Model;
+using Budget.App.Presenter;
 
-namespace Budget.App
+namespace Budget.App.View
 {
 	public partial class Form1 : Form
 	{

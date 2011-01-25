@@ -1,4 +1,4 @@
-﻿namespace Budget.App
+﻿namespace Budget.App.View
 {
 	partial class AccountForm
 	{
@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			this.accountControl1 = new Budget.App.AccountControl();
+			this.accountControl1 = new Budget.App.View.AccountControl();
 			this.saveButton = new System.Windows.Forms.Button();
 			this.iAccountViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.button1 = new System.Windows.Forms.Button();
@@ -62,7 +62,7 @@
 			// 
 			// iAccountViewBindingSource
 			// 
-			this.iAccountViewBindingSource.DataSource = typeof(Budget.App.IAccountView);
+			this.iAccountViewBindingSource.DataSource = typeof(Budget.App.Presenter.IAccountView);
 			// 
 			// button1
 			// 

@@ -1,4 +1,4 @@
-﻿namespace Budget.App
+﻿namespace Budget.App.View
 {
 	partial class AccountControl
 	{

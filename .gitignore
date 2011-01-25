@@ -5,4 +5,7 @@ bin/
 */bin/
 *.user
 */obj/
+lib/
+obj/
+db/
 

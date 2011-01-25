@@ -27,7 +27,7 @@ namespace Budget.App
 			task.Start();
 
 			AccountsPresenter view = new AccountsPresenter(db);
-			Application.Run(new Form1(view));
+			Application.Run(new MainForm(view));
 		}
 
 		static void InitContainer()
@@ -38,7 +38,7 @@ namespace Budget.App
 			container.Register<IAccountsPresenter, AccountsPresenter>();
 
 			container.Register<IAccountView, AccountForm>();
-			container.Register<IAccountsView, Form1>();
+			container.Register<IAccountsView, AccountsControl>();
 		}
 
 		private static void Connect()

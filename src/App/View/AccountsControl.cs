@@ -2,30 +2,35 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
-using System.Data;
-using System.Data.Objects;
 
 using Budget.Model;
 using Budget.App.Presenter;
 
 namespace Budget.App.View
 {
-	public partial class Form1 : Form, IAccountsView
+	public partial class AccountsControl : UserControl, IAccountsView
 	{
-		IAccountsPresenter presenter;
-
-		public Form1(IAccountsPresenter presenter)
+		public AccountsControl()
 		{
-			if (presenter == null)
-				throw new ArgumentNullException();
-
 			InitializeComponent();
-			this.presenter = presenter;
-			presenter.PropertyChanged += ViewPropertyChanged;
+		}
+
+		IAccountsPresenter presenter;
+		public IAccountsPresenter Presenter 
+		{
+			get { return presenter; }
+			set
+			{
+				if (presenter != null)
+					presenter.PropertyChanged -= ViewPropertyChanged;
+				presenter = value;
+				if (presenter != null)
+					presenter.PropertyChanged += ViewPropertyChanged;
+			}
 		}
 
 		private void ViewPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -36,20 +41,18 @@ namespace Budget.App.View
 				return;
 			}
 
-			if (e.PropertyName == "Status") 
-				toolStripStatusLabel1.Text = presenter.Status;
-			else if (e.PropertyName == "Accounts")
+			if (e.PropertyName == "Accounts")
 				LoadAccounts();
 		}
 
-		Dictionary<Account, ListViewItem> accountToItems = new Dictionary<Account,ListViewItem>();
+		Dictionary<Account, ListViewItem> accountToItems = new Dictionary<Account, ListViewItem>();
 
 		private void LoadAccounts()
 		{
 			listView1.Items.Clear();
 			accountToItems.Clear();
 
-			foreach (Account a in presenter.Accounts)
+			foreach (Account a in Presenter.Accounts)
 			{
 				int groupIndex;
 				switch (a.Type)
@@ -59,7 +62,7 @@ namespace Budget.App.View
 					case 2: groupIndex = 0; break;
 					default: groupIndex = 1; break;
 				}
-				
+
 				ListViewItem i = new ListViewItem(a.Name, listView1.Groups[groupIndex]);
 				i.SubItems.AddRange(new string[] { 
 						a.Balance.ToString(), 
@@ -76,7 +79,7 @@ namespace Budget.App.View
 
 		void Account_PropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
-			Account a = (Account) sender;
+			Account a = (Account)sender;
 			ListViewItem i = accountToItems[a];
 
 			i.SubItems[0].Text = a.Name;
@@ -89,7 +92,7 @@ namespace Budget.App.View
 			if (listView1.SelectedItems.Count != 1)
 				return;
 
-			presenter.ShowAccount((Account) listView1.SelectedItems[0].Tag);
+			Presenter.ShowAccount((Account)listView1.SelectedItems[0].Tag);
 		}
 	}
 }

@@ -67,39 +67,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountControl.cs">
+    <Compile Include="View\AccountControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AccountControl.Designer.cs">
+    <Compile Include="View\AccountControl.Designer.cs">
       <DependentUpon>AccountControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="AccountForm.cs">
+    <Compile Include="View\AccountForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AccountForm.Designer.cs">
+    <Compile Include="View\AccountForm.Designer.cs">
       <DependentUpon>AccountForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AccountView.cs" />
+    <Compile Include="ViewModel\AccountView.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="Db.cs" />
     <Compile Include="Error.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="View\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="View\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="IAccountsView.cs" />
-    <Compile Include="IAccountView.cs" />
+    <Compile Include="ViewModel\IAccountsView.cs" />
+    <Compile Include="ViewModel\IAccountView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AccountControl.resx">
+    <EmbeddedResource Include="View\AccountControl.resx">
       <DependentUpon>AccountControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AccountForm.resx">
+    <EmbeddedResource Include="View\AccountForm.resx">
       <DependentUpon>AccountForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="View\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

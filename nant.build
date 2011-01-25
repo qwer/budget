@@ -17,9 +17,9 @@
 
 	<property name="dir.lib" value="lib" />
 
-	<property name="dir.src.app" value="vs/app" />
-	<property name="dir.src.model" value="vs/model" />
-	<property name="dir.src.edm" value="vs/model" />
+	<property name="dir.src.app" value="src/app" />
+	<property name="dir.src.model" value="src/model" />
+	<property name="dir.src.edm" value="src/model" />
 
 	<property name="model.name" value="BudgetModel" />
 	<property name="app.name" value="App" />
@@ -36,7 +36,7 @@
 	<target name="build-app" depends="build-model">
 		<csc target="winexe" output="${dir.bin}/${app.name}.exe" debug="${debug}">
 			<sources>
-				<include name="${dir.src.app}/*.cs" />
+				<include name="${dir.src.app}/**/*.cs" />
 				<include name="${dir.src.app}/Properties/*.cs" />
 			</sources>
 			<resources>

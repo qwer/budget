@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>		
+  <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
@@ -44,7 +44,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
-    <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\System.Data.SqlServerCe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
@@ -55,17 +58,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BudgetModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BudgetModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="ConnectionStringBuilder.cs" />
+    <Compile Include="Model.cs" />
     <Compile Include="BudgetModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BudgetModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="ConnectionStringBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -74,20 +73,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="../../db/BudgetModel.edmx.sqlce" />
+    <None Include="BudgetModel.edmx.sqlce" />
     <EntityDeploy Include="BudgetModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BudgetModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
-    <None Include="../../db/BudgetModel.edmx.sqlce" />
-    <None Include="BudgetModel.edmx.sqlce" />
-    <None Include="BudgetModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BudgetModel.cs</LastGenOutput>
-    </None>
     <None Include="Properties\DataSources\BudgetModelContainer.datasource" />
+    <None Include="Properties\DataSources\BudgetModelContainer1.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

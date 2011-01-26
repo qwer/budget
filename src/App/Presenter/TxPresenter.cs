@@ -81,30 +81,15 @@ namespace Budget.App.Presenter
 			history.Amount = Amount;
 			history.Date = DateTime.Now;
 			history.AccountDest = Account1;
-			history.AccountSrc = Account2;
+			history.AccountSrc = Account2 == null || Account2 == nullAccount 
+					? null : Account2;
 
-			Account1.Balance += Amount;
-			if (Account2 != null && Account2 != nullAccount)
-				Account2.Balance -= Amount;
-
-			db.Container.HistorySet.AddObject(history);
-
-			try
-			{
-				db.Container.SaveChanges();
-			}
-			catch (Exception e)
-			{
-				Error.Show(e);
-				db.Container.Detach(history);
-				db.Undo(Account1);
-				db.Undo(Account2);
-			}
+			db.AddHistory(history);
 		}
 
 		bool CanSave()
 		{
-			return Account1 != nullAccount &&
+			return  Account1 != nullAccount &&
 				Account1 != Account2 &&
 				Amount != 0;
 		}

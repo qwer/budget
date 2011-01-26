@@ -83,5 +83,26 @@ namespace Budget.App
 			return 0 < Enumerable.Count(
 				GetState(obj).GetModifiedProperties());
 		}
+
+		public void AddHistory(History history)
+		{
+			history.AccountDest.Balance += history.Amount;
+			if (history.AccountSrc != null)
+				history.AccountSrc.Balance -= history.Amount;
+			
+			Container.HistorySet.AddObject(history);
+
+			try
+			{
+				Container.SaveChanges();
+			}
+			catch (Exception e)
+			{
+				Error.Show(e);
+				Container.Detach(history);
+				Undo(history.AccountDest);
+				Undo(history.AccountSrc);
+			}
+		}
 	}
 }

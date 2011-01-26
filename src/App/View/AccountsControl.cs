@@ -19,6 +19,13 @@ namespace Budget.App.View
 			InitializeComponent();
 		}
 
+		protected override void OnVisibleChanged(EventArgs e)
+		{
+			base.OnVisibleChanged(e);
+			if (Presenter != null)
+			LoadAccounts();
+		}
+
 		IAccountsPresenter presenter;
 		public IAccountsPresenter Presenter 
 		{

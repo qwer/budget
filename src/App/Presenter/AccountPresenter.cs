@@ -72,24 +72,12 @@ namespace Budget.App.Presenter
 
 		private void Undo()
 		{
-			var entry = GetState(Account);
-
-			for (int i = 0; i < entry.OriginalValues.FieldCount; i++)
-			{
-				entry.CurrentValues.SetValue(i, entry.OriginalValues[i]);
-			}
-
-			entry.AcceptChanges();
-		}
-
-		private System.Data.Objects.ObjectStateEntry GetState(Account account)
-		{
-			return db.Container.ObjectStateManager.GetObjectStateEntry(account.EntityKey);
+			db.Undo(Account);
 		}
 
 		private bool CanUndo()
 		{
-			return 0 < Enumerable.Count(GetState(Account).GetModifiedProperties());
+			return db.IsModified(Account);
 		}
 
 		private void AccountPropertyChanged(object sender, PropertyChangedEventArgs e)

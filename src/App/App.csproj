@@ -72,6 +72,8 @@
   <ItemGroup>
     <Compile Include="Container.cs" />
     <Compile Include="Presenter\AccountsPresenter.cs" />
+    <Compile Include="Presenter\ITxPresenter.cs" />
+    <Compile Include="Presenter\TxPresenter.cs" />
     <Compile Include="View\AccountControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -94,6 +96,7 @@
     <Compile Include="View\AccountsControl.Designer.cs">
       <DependentUpon>AccountsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\ITxView.cs" />
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,6 +141,7 @@
       <DependentUpon>TxControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="Properties\DataSources\Budget.App.Presenter.ITxPresenter.datasource" />
     <None Include="Properties\DataSources\Budget.Model.Account.datasource" />
     <None Include="Properties\DataSources\IAccountView.datasource" />
     <None Include="Properties\Settings.settings">

@@ -25,6 +25,15 @@ namespace Budget.App
 
 			Task task = new Task(Connect);
 			task.Start();
+			task.Wait();
+
+			ITxPresenter p = new TxPresenter(db);
+			Form f = new Form();
+			TxControl tx = new TxControl();
+			tx.Presenter = p;
+			tx.Dock = DockStyle.Fill;
+			f.Controls.Add(tx);
+			f.ShowDialog();
 
 			AccountsPresenter view = new AccountsPresenter(db);
 			Application.Run(new MainForm(view));

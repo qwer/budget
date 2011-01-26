@@ -6,6 +6,9 @@ using System.ComponentModel;
 using System.Data;
 using Budget.Model;
 
+using System.Data.Objects;
+using System.Data.Objects.DataClasses;
+
 namespace Budget.App
 {
 	public class Db
@@ -57,6 +60,28 @@ namespace Budget.App
 		{
 			//ConnectionState = e.CurrentState;
 		}
-	}
 
+		private ObjectStateEntry GetState(EntityObject obj)
+		{
+			return Container.ObjectStateManager.GetObjectStateEntry(obj.EntityKey);
+		}
+
+		internal void Undo(EntityObject obj)
+		{
+			var entry = GetState(obj);
+
+			for (int i = 0; i < entry.OriginalValues.FieldCount; i++)
+			{
+				entry.CurrentValues.SetValue(i, entry.OriginalValues[i]);
+			}
+
+			entry.AcceptChanges();
+		}
+
+		public bool IsModified(EntityObject obj)
+		{
+			return 0 < Enumerable.Count(
+				GetState(obj).GetModifiedProperties());
+		}
+	}
 }

@@ -72,6 +72,15 @@
   <ItemGroup>
     <Compile Include="Container.cs" />
     <Compile Include="Presenter\AccountsPresenter.cs" />
+    <Compile Include="Presenter\HistoryPresenter.cs" />
+    <Compile Include="Presenter\IHistoryPresenter.cs" />
+    <Compile Include="View\HistoryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\HistoryControl.Designer.cs">
+      <DependentUpon>HistoryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\IHistoryView.cs" />
     <Compile Include="Presenter\ITxPresenter.cs" />
     <Compile Include="Presenter\TxPresenter.cs" />
     <Compile Include="View\AccountControl.cs">
@@ -124,6 +133,9 @@
     <EmbeddedResource Include="View\AccountsControl.resx">
       <DependentUpon>AccountsControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\HistoryControl.resx">
+      <DependentUpon>HistoryControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -141,6 +153,7 @@
       <DependentUpon>TxControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="Properties\DataSources\Budget.App.Presenter.IHistoryPresenter.datasource" />
     <None Include="Properties\DataSources\Budget.App.Presenter.ITxPresenter.datasource" />
     <None Include="Properties\DataSources\Budget.Model.Account.datasource" />
     <None Include="Properties\DataSources\IAccountView.datasource" />

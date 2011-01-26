@@ -27,6 +27,16 @@ namespace Budget.App
 			task.Start();
 			task.Wait();
 
+			//TestTx();
+			TestHistory();
+
+
+			AccountsPresenter view = new AccountsPresenter(db);
+			Application.Run(new MainForm(view));
+		}
+
+		private static void TestTx()
+		{
 			ITxPresenter p = new TxPresenter(db);
 			Form f = new Form();
 			TxControl tx = new TxControl();
@@ -34,9 +44,17 @@ namespace Budget.App
 			tx.Dock = DockStyle.Fill;
 			f.Controls.Add(tx);
 			f.ShowDialog();
+		}
 
-			AccountsPresenter view = new AccountsPresenter(db);
-			Application.Run(new MainForm(view));
+		private static void TestHistory()
+		{
+			HistoryPresenter p = new HistoryPresenter(db);
+			Form f = new Form();
+			HistoryControl tx = new HistoryControl();
+			tx.Presenter = p;
+			tx.Dock = DockStyle.Fill;
+			f.Controls.Add(tx);
+			f.ShowDialog();
 		}
 
 		static void InitContainer()

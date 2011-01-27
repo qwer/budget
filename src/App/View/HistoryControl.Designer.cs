@@ -41,6 +41,9 @@
 			this.accountComboBox = new System.Windows.Forms.ComboBox();
 			this.startDateTimePicker = new System.Windows.Forms.DateTimePicker();
 			this.endDateTimePicker = new System.Windows.Forms.DateTimePicker();
+			this.accountLabel = new System.Windows.Forms.Label();
+			this.startDateLabel = new System.Windows.Forms.Label();
+			this.label3 = new System.Windows.Forms.Label();
 			this.tableLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.iHistoryPresenterBindingSource)).BeginInit();
@@ -59,7 +62,7 @@
 			this.tableLayoutPanel1.RowCount = 2;
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(751, 452);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(786, 452);
 			this.tableLayoutPanel1.TabIndex = 0;
 			// 
 			// dataGridView1
@@ -82,7 +85,7 @@
 			this.dataGridView1.Name = "dataGridView1";
 			this.dataGridView1.ReadOnly = true;
 			this.dataGridView1.RowTemplate.Height = 30;
-			this.dataGridView1.Size = new System.Drawing.Size(745, 336);
+			this.dataGridView1.Size = new System.Drawing.Size(780, 336);
 			this.dataGridView1.TabIndex = 0;
 			// 
 			// DateColumn
@@ -130,11 +133,14 @@
 			this.tableLayoutPanel2.AutoSize = true;
 			this.tableLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.tableLayoutPanel2.ColumnCount = 2;
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.94495F));
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.05505F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.58974F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 76.41026F));
 			this.tableLayoutPanel2.Controls.Add(this.accountComboBox, 1, 0);
 			this.tableLayoutPanel2.Controls.Add(this.startDateTimePicker, 1, 1);
 			this.tableLayoutPanel2.Controls.Add(this.endDateTimePicker, 1, 2);
+			this.tableLayoutPanel2.Controls.Add(this.accountLabel, 0, 0);
+			this.tableLayoutPanel2.Controls.Add(this.startDateLabel, 0, 1);
+			this.tableLayoutPanel2.Controls.Add(this.label3, 0, 2);
 			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
 			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -142,7 +148,7 @@
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel2.Size = new System.Drawing.Size(745, 104);
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(780, 104);
 			this.tableLayoutPanel2.TabIndex = 1;
 			// 
 			// accountComboBox
@@ -150,7 +156,7 @@
 			this.accountComboBox.DataSource = this.iHistoryPresenterBindingSource;
 			this.accountComboBox.DisplayMember = "Accounts";
 			this.accountComboBox.FormattingEnabled = true;
-			this.accountComboBox.Location = new System.Drawing.Point(255, 3);
+			this.accountComboBox.Location = new System.Drawing.Point(186, 3);
 			this.accountComboBox.Name = "accountComboBox";
 			this.accountComboBox.Size = new System.Drawing.Size(200, 30);
 			this.accountComboBox.TabIndex = 0;
@@ -158,7 +164,7 @@
 			// startDateTimePicker
 			// 
 			this.startDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.iHistoryPresenterBindingSource, "StartDate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-			this.startDateTimePicker.Location = new System.Drawing.Point(255, 39);
+			this.startDateTimePicker.Location = new System.Drawing.Point(186, 39);
 			this.startDateTimePicker.Name = "startDateTimePicker";
 			this.startDateTimePicker.Size = new System.Drawing.Size(200, 28);
 			this.startDateTimePicker.TabIndex = 1;
@@ -166,10 +172,37 @@
 			// endDateTimePicker
 			// 
 			this.endDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.iHistoryPresenterBindingSource, "EndDate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-			this.endDateTimePicker.Location = new System.Drawing.Point(255, 73);
+			this.endDateTimePicker.Location = new System.Drawing.Point(186, 73);
 			this.endDateTimePicker.Name = "endDateTimePicker";
 			this.endDateTimePicker.Size = new System.Drawing.Size(200, 28);
 			this.endDateTimePicker.TabIndex = 2;
+			// 
+			// accountLabel
+			// 
+			this.accountLabel.AutoSize = true;
+			this.accountLabel.Location = new System.Drawing.Point(3, 0);
+			this.accountLabel.Name = "accountLabel";
+			this.accountLabel.Size = new System.Drawing.Size(51, 22);
+			this.accountLabel.TabIndex = 3;
+			this.accountLabel.Text = "Счет";
+			// 
+			// startDateLabel
+			// 
+			this.startDateLabel.AutoSize = true;
+			this.startDateLabel.Location = new System.Drawing.Point(3, 36);
+			this.startDateLabel.Name = "startDateLabel";
+			this.startDateLabel.Size = new System.Drawing.Size(146, 22);
+			this.startDateLabel.TabIndex = 4;
+			this.startDateLabel.Text = "Начальная дата";
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(3, 70);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(136, 22);
+			this.label3.TabIndex = 5;
+			this.label3.Text = "Конечная дата";
 			// 
 			// HistoryControl
 			// 
@@ -177,12 +210,13 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Name = "HistoryControl";
-			this.Size = new System.Drawing.Size(751, 452);
+			this.Size = new System.Drawing.Size(786, 452);
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.iHistoryPresenterBindingSource)).EndInit();
 			this.tableLayoutPanel2.ResumeLayout(false);
+			this.tableLayoutPanel2.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -201,5 +235,8 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn SrcAccountColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn DestAccountColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn DescriptionColumn;
+		private System.Windows.Forms.Label accountLabel;
+		private System.Windows.Forms.Label startDateLabel;
+		private System.Windows.Forms.Label label3;
 	}
 }

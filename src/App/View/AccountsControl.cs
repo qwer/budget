@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 using Budget.Model;
 using Budget.App.Presenter;
+using Budget.App.IoC;
 
 namespace Budget.App.View
 {
@@ -17,16 +14,21 @@ namespace Budget.App.View
 		public AccountsControl()
 		{
 			InitializeComponent();
+
+			if (!DesignMode)
+				IoCContainer.Instance.Inject(this);
 		}
 
 		protected override void OnVisibleChanged(EventArgs e)
 		{
 			base.OnVisibleChanged(e);
 			if (Presenter != null)
-			LoadAccounts();
+				LoadAccounts();
 		}
 
 		IAccountsPresenter presenter;
+
+		[Dependency]
 		public IAccountsPresenter Presenter 
 		{
 			get { return presenter; }
@@ -34,6 +36,8 @@ namespace Budget.App.View
 			{
 				if (presenter != null)
 					presenter.PropertyChanged -= ViewPropertyChanged;
+				if (value == null)
+					return;
 				presenter = value;
 				if (presenter != null)
 					presenter.PropertyChanged += ViewPropertyChanged;
@@ -99,7 +103,7 @@ namespace Budget.App.View
 			if (listView1.SelectedItems.Count != 1)
 				return;
 
-			Presenter.ShowAccount((Account)listView1.SelectedItems[0].Tag);
+			Presenter.ShowAccount((Account) listView1.SelectedItems[0].Tag);
 		}
 	}
 }

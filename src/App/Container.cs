@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Reflection;
+using System.ComponentModel;
 
 using Microsoft.Practices.Unity;
+using System.Linq;
 
 namespace Budget.App.IoC
 {
@@ -14,11 +14,13 @@ namespace Budget.App.IoC
 
 	public interface IRegister
 	{
+		void Register<T>(T t);
 		void Register<I, T>() where T : I;
 	}
 
 	public interface IContainer : IResolve, IRegister
 	{
+		void Inject<T>(T t);
 	}
 
 	class MsUnityContainer : IContainer
@@ -38,5 +40,34 @@ namespace Budget.App.IoC
 		{
  			container.RegisterType<I, T>();
 		}
+
+		public void Register<T>(T t)
+		{
+			container.RegisterInstance(t);
+		}
+
+		public void Inject<T>(T t)
+		{
+			foreach (PropertyInfo pi in t.GetType().GetProperties())
+				if (pi.GetCustomAttributes(typeof(DependencyAttribute), true).Length > 0)
+					pi.SetValue(t, container.Resolve(pi.PropertyType), null);
+		}
 	}
+
+	static class IoCContainer
+	{
+		private static readonly IContainer container = new MsUnityContainer();
+		public static IContainer Instance
+		{
+			get { return container; }
+		}
+	}
+
+	[AttributeUsage(
+		AttributeTargets.Property, 
+		Inherited = false, 
+		AllowMultiple = false)]
+	class DependencyAttribute : Attribute
+	{
+	} 
 }

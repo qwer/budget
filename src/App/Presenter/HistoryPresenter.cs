@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 
 using Budget.Model;
@@ -10,15 +9,25 @@ namespace Budget.App.Presenter
 	class HistoryPresenter : ObservableObject, IHistoryPresenter
 	{
 		Db db;
-
+		Account nullAccount;
+		
 		public HistoryPresenter(Db db)
 		{
 			this.db = db;
+
+			nullAccount = new Account();
+			nullAccount.Name = "";
 		}
 
 		public IEnumerable<Account> Accounts
 		{
-			get { return db.Container.AccountSet; }
+			get 
+			{
+				List<Account> l = new List<Account>();
+				l.Add(nullAccount);
+				l.AddRange(db.Container.AccountSet);
+				return l;
+			}
 		}
 
 		private DateTime startDate = DateTime.Now;
@@ -64,7 +73,7 @@ namespace Budget.App.Presenter
 		{
 			get
 			{
-				if (account == null)
+				if (Account == null || Account == nullAccount)
 					return db.Container.HistorySet.Where(h =>
 						h.Date >= startDate &&
 						h.Date <= endDate);

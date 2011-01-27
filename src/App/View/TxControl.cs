@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+
 using Budget.App.Presenter;
+using Budget.App.IoC;
 
 namespace Budget.App.View
 {
@@ -15,9 +13,14 @@ namespace Budget.App.View
 		public TxControl()
 		{
 			InitializeComponent();
+
+			if (!DesignMode)
+				IoCContainer.Instance.Inject(this);
 		}
 
 		private ITxPresenter presenter;
+
+		[Dependency]
 		public ITxPresenter Presenter
 		{
 			get { return presenter; }

@@ -33,13 +33,15 @@
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.tabControl = new System.Windows.Forms.TabControl();
 			this.accountsTabPage = new System.Windows.Forms.TabPage();
+			this.accountsControl1 = new Budget.App.View.AccountsControl();
 			this.incomesTabPage = new System.Windows.Forms.TabPage();
 			this.historyTabPage = new System.Windows.Forms.TabPage();
 			this.accountBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.accountsControl1 = new Budget.App.View.AccountsControl();
+			this.historyControl1 = new Budget.App.View.HistoryControl();
 			this.statusStrip1.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.accountsTabPage.SuspendLayout();
+			this.historyTabPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.accountBindingSource)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -82,6 +84,14 @@
 			this.accountsTabPage.Text = "Счета";
 			this.accountsTabPage.UseVisualStyleBackColor = true;
 			// 
+			// accountsControl1
+			// 
+			this.accountsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.accountsControl1.Location = new System.Drawing.Point(3, 3);
+			this.accountsControl1.Name = "accountsControl1";
+			this.accountsControl1.Size = new System.Drawing.Size(808, 507);
+			this.accountsControl1.TabIndex = 0;
+			// 
 			// incomesTabPage
 			// 
 			this.incomesTabPage.Location = new System.Drawing.Point(4, 31);
@@ -94,6 +104,7 @@
 			// 
 			// historyTabPage
 			// 
+			this.historyTabPage.Controls.Add(this.historyControl1);
 			this.historyTabPage.Location = new System.Drawing.Point(4, 31);
 			this.historyTabPage.Name = "historyTabPage";
 			this.historyTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -106,16 +117,16 @@
 			// 
 			this.accountBindingSource.DataSource = typeof(Budget.Model.Account);
 			// 
-			// accountsControl1
+			// historyControl1
 			// 
-			this.accountsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.accountsControl1.Location = new System.Drawing.Point(3, 3);
-			this.accountsControl1.Name = "accountsControl1";
-			this.accountsControl1.Presenter = null;
-			this.accountsControl1.Size = new System.Drawing.Size(808, 507);
-			this.accountsControl1.TabIndex = 0;
+			this.historyControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.historyControl1.Location = new System.Drawing.Point(3, 3);
+			this.historyControl1.Name = "historyControl1";
+			this.historyControl1.Presenter = null;
+			this.historyControl1.Size = new System.Drawing.Size(808, 507);
+			this.historyControl1.TabIndex = 0;
 			// 
-			// Form1
+			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -123,12 +134,13 @@
 			this.Controls.Add(this.tabControl);
 			this.Controls.Add(this.statusStrip1);
 			this.Font = new System.Drawing.Font("Tahoma", 8.099999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.Name = "Form1";
+			this.Name = "MainForm";
 			this.Text = "Form1";
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
 			this.tabControl.ResumeLayout(false);
 			this.accountsTabPage.ResumeLayout(false);
+			this.historyTabPage.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.accountBindingSource)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -145,6 +157,7 @@
 		private System.Windows.Forms.TabPage incomesTabPage;
 		private System.Windows.Forms.TabPage historyTabPage;
 		private AccountsControl accountsControl1;
+		private HistoryControl historyControl1;
 	}
 }
 

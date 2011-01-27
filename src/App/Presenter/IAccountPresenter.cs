@@ -1,5 +1,4 @@
-﻿using System;
-using Budget.Model;
+﻿using Budget.Model;
  
 namespace Budget.App.Presenter
 {

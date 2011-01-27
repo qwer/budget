@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Budget.App.Presenter;
 
 namespace Budget.App.View
 {
-	public interface ITxView
+	interface ITxView : IView<ITxPresenter>
 	{
 	}
 }

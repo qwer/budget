@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Budget.App.Presenter;
 
 namespace Budget.App.View
 {
-	public interface IAccountsView
+	interface IAccountsView : IView<IAccountsPresenter>
 	{
 	}
 }

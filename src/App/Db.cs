@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.ComponentModel;
 using System.Data;
-using Budget.Model;
-
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
+
+using Budget.Model;
 
 namespace Budget.App
 {

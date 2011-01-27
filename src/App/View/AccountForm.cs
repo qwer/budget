@@ -1,33 +1,39 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 using Budget.Model;
 using Budget.App.Presenter;
+using Budget.App.IoC;
 
 namespace Budget.App.View
 {
 	public partial class AccountForm : Form, IAccountView
 	{
-		IAccountPresenter presenter;
-
-		public AccountForm(IAccountPresenter presenter)
+		public AccountForm()
 		{
-			if (presenter == null)
-				throw new ArgumentNullException();
-
 			InitializeComponent();
-
-			this.presenter = presenter;
-			iAccountViewBindingSource.DataSource = presenter;
 			button1.Click += new EventHandler(button1_Click);
+
+			if (!DesignMode)
+				IoCContainer.Instance.Inject(this);
 		}
 
+		IAccountPresenter presenter;
+
+		[Dependency]
+		public IAccountPresenter Presenter
+		{
+			get { return presenter; }
+			set
+			{
+				if (value == null)
+					return;
+				presenter = value;
+				iAccountViewBindingSource.DataSource = value;
+			}
+		}
+		
 		void IAccountView.Show()
 		{
 			ShowDialog();

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Windows.Forms;
 
 using Budget.App.Presenter;
+using Budget.App.IoC;
 
 namespace Budget.App.View
 {
@@ -14,9 +12,14 @@ namespace Budget.App.View
 		public HistoryControl()
 		{
 			InitializeComponent();
+
+			if (!DesignMode)
+				IoCContainer.Instance.Inject(this);
 		}
 
 		private IHistoryPresenter presenter;
+
+		[Dependency]
 		public IHistoryPresenter Presenter
 		{
 			get { return presenter; }

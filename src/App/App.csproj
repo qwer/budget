@@ -71,9 +71,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Container.cs" />
+    <Compile Include="ObservableObject.cs" />
     <Compile Include="Presenter\AccountsPresenter.cs" />
     <Compile Include="Presenter\HistoryPresenter.cs" />
     <Compile Include="Presenter\IHistoryPresenter.cs" />
+    <Compile Include="View\IView.cs" />
     <Compile Include="View\HistoryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -110,7 +112,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\MainForm.Designer.cs">
-      <DependentUpon>MainForm1.cs</DependentUpon>
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Presenter\IAccountsPresenter.cs" />
     <Compile Include="Presenter\IAccountPresenter.cs" />

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using System.Threading.Tasks;
 
@@ -13,14 +12,10 @@ namespace Budget.App
 	static class Program
 	{
 		static Db db = new Db();
-		static IContainer container;
 		
 		[STAThread]
 		static void Main()
 		{
-			Application.EnableVisualStyles();
-			Application.SetCompatibleTextRenderingDefault(false);
-
 			InitContainer();
 
 			Task task = new Task(Connect);
@@ -28,19 +23,17 @@ namespace Budget.App
 			task.Wait();
 
 			//TestTx();
-			TestHistory();
+			//TestHistory();
 
-
-			AccountsPresenter view = new AccountsPresenter(db);
-			Application.Run(new MainForm(view));
+			Application.EnableVisualStyles();
+			Application.SetCompatibleTextRenderingDefault(false);
+			Application.Run(new MainForm());
 		}
 
 		private static void TestTx()
 		{
-			ITxPresenter p = new TxPresenter(db);
 			Form f = new Form();
 			TxControl tx = new TxControl();
-			tx.Presenter = p;
 			tx.Dock = DockStyle.Fill;
 			f.Controls.Add(tx);
 			f.ShowDialog();
@@ -48,10 +41,8 @@ namespace Budget.App
 
 		private static void TestHistory()
 		{
-			HistoryPresenter p = new HistoryPresenter(db);
 			Form f = new Form();
 			HistoryControl tx = new HistoryControl();
-			tx.Presenter = p;
 			tx.Dock = DockStyle.Fill;
 			f.Controls.Add(tx);
 			f.ShowDialog();
@@ -59,13 +50,19 @@ namespace Budget.App
 
 		static void InitContainer()
 		{
-			container = new MsUnityContainer();
+			IContainer container = IoCContainer.Instance;//new MsUnityContainer();
+
+			container.Register(db);
 
 			container.Register<IAccountPresenter, AccountPresenter>();
 			container.Register<IAccountsPresenter, AccountsPresenter>();
+			container.Register<ITxPresenter, TxPresenter>();
+			container.Register<IHistoryPresenter, HistoryPresenter>();
 
 			container.Register<IAccountView, AccountForm>();
 			container.Register<IAccountsView, AccountsControl>();
+			container.Register<ITxView, TxControl>();
+			container.Register<IHistoryView, HistoryControl>();
 		}
 
 		private static void Connect()

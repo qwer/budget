@@ -14,13 +14,13 @@ using Budget.App.Presenter;
 
 namespace Budget.App.View
 {
-	public partial class MainForm : Form, IAccountsView
+	public partial class MainForm : Form
 	{
-		public MainForm(IAccountsPresenter presenter)
+		public MainForm()
 		{
 			InitializeComponent();
-			accountsControl1.Presenter = presenter;
-			presenter.PropertyChanged += Presenter_PropertyChanged;
+			//accountsControl1.Presenter = presenter;
+			//presenter.PropertyChanged += Presenter_PropertyChanged;
 		}
 
 		private void Presenter_PropertyChanged(object sender, PropertyChangedEventArgs e)

@@ -45,6 +45,7 @@
             this.accountBalanceColumn,
             this.accountTargetColumn});
 			this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.listView1.FullRowSelect = true;
 			this.listView1.GridLines = true;
 			listViewGroup1.Header = "Цели";
 			listViewGroup1.Name = "targetsGroup";
@@ -75,11 +76,13 @@
 			// accountBalanceColumn
 			// 
 			this.accountBalanceColumn.Text = "Баланс";
+			this.accountBalanceColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			this.accountBalanceColumn.Width = 287;
 			// 
 			// accountTargetColumn
 			// 
 			this.accountTargetColumn.Text = "Цель";
+			this.accountTargetColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			this.accountTargetColumn.Width = 231;
 			// 
 			// AccountsControl

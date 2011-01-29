@@ -49,12 +49,9 @@ namespace Budget.App.Presenter
 		}
 
 		IAccountView accountView;
-		//IAccountPresenter accountPresenter;
 
 		public void ShowAccount(Account account)
 		{
-			//if (accountPresenter == null)
-			//	accountPresenter = new AccountPresenter(db);
 			if (accountView == null)
 				accountView = new AccountForm();
 

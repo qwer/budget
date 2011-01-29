@@ -39,8 +39,7 @@ namespace Budget.App.View
 				if (value == null)
 					return;
 				presenter = value;
-				if (presenter != null)
-					presenter.PropertyChanged += ViewPropertyChanged;
+				presenter.PropertyChanged += ViewPropertyChanged;
 			}
 		}
 
@@ -56,42 +55,45 @@ namespace Budget.App.View
 				LoadAccounts();
 		}
 
-		Dictionary<Account, ListViewItem> accountToItems = new Dictionary<Account, ListViewItem>();
+		Dictionary<Account, ListViewItem> accountsToItems = new Dictionary<Account, ListViewItem>();
 
 		private void LoadAccounts()
 		{
 			listView1.Items.Clear();
-			accountToItems.Clear();
+			accountsToItems.Clear();
 
 			foreach (Account a in Presenter.Accounts)
+				AddAccount(a);
+		}
+
+		private void AddAccount(Account a)
+		{
+			int groupIndex;
+			switch (a.AccountType)
 			{
-				int groupIndex;
-				switch (a.Type)
-				{
-					case 0: groupIndex = 1; break;
-					case 1: groupIndex = 2; break;
-					case 2: groupIndex = 0; break;
-					default: groupIndex = 1; break;
-				}
-
-				ListViewItem i = new ListViewItem(a.Name, listView1.Groups[groupIndex]);
-				i.SubItems.AddRange(new string[] { 
-						a.Balance.ToString(), 
-						a.Type == 2 ? a.Target.ToString() : "" 
-				});
-				i.Tag = a;
-
-				listView1.Items.Add(i);
-				accountToItems[a] = i;
-
-				a.PropertyChanged += Account_PropertyChanged; /* XXX ref */
+				default:
+				case AccountType.Regular: groupIndex = 1; break;
+				case AccountType.Reserve: groupIndex = 2; break;
+				case AccountType.Target: groupIndex = 0; break;
 			}
+
+			ListViewItem i = new ListViewItem(a.Name, listView1.Groups[groupIndex]);
+			i.SubItems.AddRange(new string[] {
+					a.Balance.ToString(),
+					a.Type == 2 ? a.Target.ToString() : "" 
+			});
+			i.Tag = a;
+
+			listView1.Items.Add(i);
+			accountsToItems[a] = i;
+
+			a.PropertyChanged += Account_PropertyChanged; /* XXX ref */
 		}
 
 		void Account_PropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
 			Account a = (Account)sender;
-			ListViewItem i = accountToItems[a];
+			ListViewItem i = accountsToItems[a];
 
 			i.SubItems[0].Text = a.Name;
 			i.SubItems[1].Text = a.Balance.ToString();

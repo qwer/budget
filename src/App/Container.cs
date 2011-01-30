@@ -21,6 +21,7 @@ namespace Budget.App.IoC
 	public interface IContainer : IResolve, IRegister
 	{
 		void Inject<T>(T t);
+		bool Enabled { get; set; }
 	}
 
 	class MsUnityContainer : IContainer
@@ -48,10 +49,15 @@ namespace Budget.App.IoC
 
 		public void Inject<T>(T t)
 		{
+			if (!Enabled)
+				return;
+
 			foreach (PropertyInfo pi in t.GetType().GetProperties())
 				if (pi.GetCustomAttributes(typeof(DependencyAttribute), true).Length > 0)
 					pi.SetValue(t, container.Resolve(pi.PropertyType), null);
 		}
+
+		public bool Enabled { get; set; }
 	}
 
 	static class IoCContainer

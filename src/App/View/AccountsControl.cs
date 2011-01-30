@@ -14,9 +14,7 @@ namespace Budget.App.View
 		public AccountsControl()
 		{
 			InitializeComponent();
-
-			if (!DesignMode)
-				IoCContainer.Instance.Inject(this);
+			IoCContainer.Instance.Inject(this);
 		}
 
 		protected override void OnVisibleChanged(EventArgs e)

@@ -153,6 +153,8 @@
 			// 
 			// accountComboBox
 			// 
+			this.accountComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.accountComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.accountComboBox.DataSource = this.iHistoryPresenterBindingSource;
 			this.accountComboBox.DisplayMember = "Accounts";
 			this.accountComboBox.FormattingEnabled = true;

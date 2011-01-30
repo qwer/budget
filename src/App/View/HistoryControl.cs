@@ -12,9 +12,7 @@ namespace Budget.App.View
 		public HistoryControl()
 		{
 			InitializeComponent();
-
-			if (!DesignMode)
-				IoCContainer.Instance.Inject(this);
+			IoCContainer.Instance.Inject(this);
 		}
 
 		private IHistoryPresenter presenter;

@@ -50,19 +50,22 @@ namespace Budget.App
 
 		static void InitContainer()
 		{
-			IContainer container = IoCContainer.Instance;//new MsUnityContainer();
+			IContainer container = IoCContainer.Instance;
 
+			container.Enabled = true;
 			container.Register(db);
 
 			container.Register<IAccountPresenter, AccountPresenter>();
 			container.Register<IAccountsPresenter, AccountsPresenter>();
 			container.Register<ITxPresenter, TxPresenter>();
 			container.Register<IHistoryPresenter, HistoryPresenter>();
+			container.Register<IIncomesPresenter, IncomesPresenter>();
 
 			container.Register<IAccountView, AccountForm>();
 			container.Register<IAccountsView, AccountsControl>();
 			container.Register<ITxView, TxControl>();
 			container.Register<IHistoryView, HistoryControl>();
+			container.Register<IIncomesView, IncomesControl>();
 		}
 
 		private static void Connect()

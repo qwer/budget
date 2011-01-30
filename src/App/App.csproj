@@ -72,6 +72,15 @@
     <Compile Include="Presenter\AccountsPresenter.cs" />
     <Compile Include="Presenter\HistoryPresenter.cs" />
     <Compile Include="Presenter\IHistoryPresenter.cs" />
+    <Compile Include="Presenter\IIncomesPresenter.cs" />
+    <Compile Include="Presenter\IncomesPresenter.cs" />
+    <Compile Include="View\IIncomesView.cs" />
+    <Compile Include="View\IncomesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\IncomesControl.Designer.cs">
+      <DependentUpon>IncomesControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\IView.cs" />
     <Compile Include="View\HistoryControl.cs">
       <SubType>UserControl</SubType>
@@ -134,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\HistoryControl.resx">
       <DependentUpon>HistoryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\IncomesControl.resx">
+      <DependentUpon>IncomesControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

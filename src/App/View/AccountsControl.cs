@@ -68,20 +68,11 @@ namespace Budget.App.View
 
 		private void AddAccount(Account a)
 		{
-			int groupIndex;
-			switch (a.AccountType)
-			{
-				default:
-				case AccountType.Regular: groupIndex = 1; break;
-				case AccountType.Reserve: groupIndex = 2; break;
-				case AccountType.Target: groupIndex = 0; break;
-			}
-
-			ListViewItem i = new ListViewItem(a.Name, listView1.Groups[groupIndex]);
+			ListViewItem i = new ListViewItem(a.Name, GetGroup(a));
 			i.SubItems.AddRange(new string[] {
 					a.Balance.ToString(),
 					a.Type == 2 ? a.Target.ToString() : "" 
-			});
+				});
 			i.Tag = a;
 
 			listView1.Items.Add(i);
@@ -90,11 +81,28 @@ namespace Budget.App.View
 			a.PropertyChanged += Account_PropertyChanged; /* XXX ref */
 		}
 
+		private ListViewGroup GetGroup(Account a)
+		{
+			int groupIndex;
+			switch (a.AccountType)
+			{
+				default:
+				case AccountType.Regular: groupIndex = 1; break;
+				case AccountType.Reserve: groupIndex = 2; break;
+				case AccountType.Target: groupIndex = 0; break;
+			}
+			return listView1.Groups[groupIndex];
+		}
+
 		void Account_PropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
-			Account a = (Account)sender;
+			Account a = (Account) sender;
 			ListViewItem i = accountsToItems[a];
+			ListViewGroup g = GetGroup(a);
 
+			if (i.Group != g)
+				i.Group = g;
+		
 			i.SubItems[0].Text = a.Name;
 			i.SubItems[1].Text = a.Balance.ToString();
 			i.SubItems[2].Text = a.Type == 2 ? a.Target.ToString() : "";

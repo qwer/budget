@@ -29,6 +29,16 @@ namespace Budget.Model
 					default: return AccountType.Regular;
 				}
 			}
+			set
+			{
+				switch (value)
+				{
+					default:
+					case AccountType.Regular: Type = 0; break;
+					case AccountType.Reserve: Type = 1; break;
+					case AccountType.Target: Type = 2; break;
+				}
+			}
 		}
 	}
 }

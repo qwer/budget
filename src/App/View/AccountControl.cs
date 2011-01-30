@@ -13,6 +13,19 @@ namespace Budget.App.View
 			InitializeComponent();
 		}
 
+		IAccountPresenter presenter;
+		public IAccountPresenter Presenter
+		{
+			get { return presenter; }
+			set
+			{
+				if (value == null)
+					return;
+				presenter = value;
+				iAccountPresenterBindingSource.DataSource = presenter;
+			}
+		}
+
 		private Account account;
 		public Account Account
 		{

@@ -13,7 +13,7 @@ namespace Budget.App.View
 		public AccountForm()
 		{
 			InitializeComponent();
-			button1.Click += new EventHandler(button1_Click);
+			cancelButton.Click += new EventHandler(cancelButton_Click);
 
 			if (!DesignMode)
 				IoCContainer.Instance.Inject(this);
@@ -31,6 +31,7 @@ namespace Budget.App.View
 					return;
 				presenter = value;
 				iAccountViewBindingSource.DataSource = value;
+				accountControl1.Presenter = presenter;
 			}
 		}
 		
@@ -49,8 +50,7 @@ namespace Budget.App.View
 		{
 			if (presenter.UndoCommand.CanExecute)
 				presenter.UndoCommand.Execute();
-			base.Hide();
-			//base.OnClosing(e);
+			base.OnClosing(e);
 		}
 
 		private void saveButton_Click(object sender, EventArgs e)
@@ -59,7 +59,7 @@ namespace Budget.App.View
 			Close();
 		}
 
-		void button1_Click(object sender, EventArgs e)
+		private void cancelButton_Click(object sender, EventArgs e)
 		{
 			Close();
 		}

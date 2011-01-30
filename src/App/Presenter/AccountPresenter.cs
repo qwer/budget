@@ -4,7 +4,7 @@ using Budget.Model;
 
 namespace Budget.App.Presenter
 {
-	class AccountPresenter : IAccountPresenter
+	class AccountPresenter : ObservableObject, IAccountPresenter
 	{
 		Db db;
 
@@ -48,6 +48,21 @@ namespace Budget.App.Presenter
 				account = value;
 				if (account != null)
 					account.PropertyChanged += AccountPropertyChanged;
+				OnPropertyChanged("Account");
+				OnPropertyChanged("IsTarget");
+			}
+		}
+
+		public bool IsTarget
+		{
+			get
+			{
+				return Account.AccountType == AccountType.Target;
+			}
+			set
+			{
+				Account.AccountType = value ? AccountType.Target : AccountType.Regular;
+				OnPropertyChanged("IsTarget");
 			}
 		}
 

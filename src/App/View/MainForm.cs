@@ -19,8 +19,6 @@ namespace Budget.App.View
 		public MainForm()
 		{
 			InitializeComponent();
-			//accountsControl1.Presenter = presenter;
-			//presenter.PropertyChanged += Presenter_PropertyChanged;
 		}
 
 		private void Presenter_PropertyChanged(object sender, PropertyChangedEventArgs e)

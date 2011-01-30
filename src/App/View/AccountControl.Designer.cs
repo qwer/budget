@@ -31,6 +31,7 @@
 			this.components = new System.ComponentModel.Container();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.nameTextBox = new System.Windows.Forms.TextBox();
+			this.accountBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.nameLabel = new System.Windows.Forms.Label();
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.descriptionLabel = new System.Windows.Forms.Label();
@@ -38,10 +39,11 @@
 			this.isTargetLabel = new System.Windows.Forms.Label();
 			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
 			this.targetLabel = new System.Windows.Forms.Label();
-			this.accountBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.iAccountPresenterBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.tableLayoutPanel1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.accountBindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.iAccountPresenterBindingSource)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tableLayoutPanel1
@@ -78,6 +80,10 @@
 			this.nameTextBox.Size = new System.Drawing.Size(431, 28);
 			this.nameTextBox.TabIndex = 0;
 			// 
+			// accountBindingSource
+			// 
+			this.accountBindingSource.DataSource = typeof(Budget.Model.Account);
+			// 
 			// nameLabel
 			// 
 			this.nameLabel.AutoSize = true;
@@ -108,6 +114,7 @@
 			// checkBox
 			// 
 			this.checkBox.AutoSize = true;
+			this.checkBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.iAccountPresenterBindingSource, "IsTarget", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
 			this.checkBox.Location = new System.Drawing.Point(125, 156);
 			this.checkBox.Name = "checkBox";
 			this.checkBox.Size = new System.Drawing.Size(23, 22);
@@ -126,6 +133,8 @@
 			// numericUpDown1
 			// 
 			this.numericUpDown1.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.accountBindingSource, "Target", true));
+			this.numericUpDown1.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", this.iAccountPresenterBindingSource, "IsTarget", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+			this.numericUpDown1.DataBindings.Add(new System.Windows.Forms.Binding("Visible", this.iAccountPresenterBindingSource, "IsTarget", true, System.Windows.Forms.DataSourceUpdateMode.Never));
 			this.numericUpDown1.DecimalPlaces = 2;
 			this.numericUpDown1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.numericUpDown1.Increment = new decimal(new int[] {
@@ -147,15 +156,16 @@
 			// targetLabel
 			// 
 			this.targetLabel.AutoSize = true;
+			this.targetLabel.DataBindings.Add(new System.Windows.Forms.Binding("Visible", this.iAccountPresenterBindingSource, "IsTarget", true));
 			this.targetLabel.Location = new System.Drawing.Point(3, 181);
 			this.targetLabel.Name = "targetLabel";
 			this.targetLabel.Size = new System.Drawing.Size(52, 22);
 			this.targetLabel.TabIndex = 7;
 			this.targetLabel.Text = "Цель";
 			// 
-			// accountBindingSource
+			// iAccountPresenterBindingSource
 			// 
-			this.accountBindingSource.DataSource = typeof(Budget.Model.Account);
+			this.iAccountPresenterBindingSource.DataSource = typeof(Budget.App.Presenter.IAccountPresenter);
 			// 
 			// AccountControl
 			// 
@@ -166,8 +176,9 @@
 			this.Size = new System.Drawing.Size(559, 262);
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.accountBindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.iAccountPresenterBindingSource)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -185,5 +196,6 @@
 		private System.Windows.Forms.NumericUpDown numericUpDown1;
 		private System.Windows.Forms.Label targetLabel;
 		private System.Windows.Forms.BindingSource accountBindingSource;
+		private System.Windows.Forms.BindingSource iAccountPresenterBindingSource;
 	}
 }

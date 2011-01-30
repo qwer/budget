@@ -30,5 +30,13 @@ namespace Budget.App.View
 				presenter = value;
 			}
 		}
+
+		void IIncomeView.Show()
+		{
+			Form f = new Form();
+			this.Dock = DockStyle.Fill;
+			f.Controls.Add(this);
+			f.ShowDialog();
+		}
 	}
 }

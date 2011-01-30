@@ -153,6 +153,9 @@
     <EmbeddedResource Include="View\HistoryControl.resx">
       <DependentUpon>HistoryControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\IncomeControl.resx">
+      <DependentUpon>IncomeControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\IncomesControl.resx">
       <DependentUpon>IncomesControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -175,6 +178,7 @@
     <None Include="app.config" />
     <None Include="Properties\DataSources\Budget.App.Presenter.IAccountPresenter.datasource" />
     <None Include="Properties\DataSources\Budget.App.Presenter.IHistoryPresenter.datasource" />
+    <None Include="Properties\DataSources\Budget.App.Presenter.IIncomePresenter.datasource" />
     <None Include="Properties\DataSources\Budget.App.Presenter.ITxPresenter.datasource" />
     <None Include="Properties\DataSources\Budget.Model.Account.datasource" />
     <None Include="Properties\DataSources\IAccountView.datasource" />

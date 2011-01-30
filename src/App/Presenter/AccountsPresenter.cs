@@ -5,6 +5,7 @@ using System.Data;
 using Budget.Model;
 
 using Budget.App.View;
+using Budget.App.IoC;
 
 namespace Budget.App.Presenter
 {
@@ -53,7 +54,7 @@ namespace Budget.App.Presenter
 		public void ShowAccount(Account account)
 		{
 			if (accountView == null)
-				accountView = new AccountForm();
+				accountView = IoCContainer.Instance.Resolve<IAccountView>();
 
 			accountView.Presenter.Account = account;
 			accountView.Show();

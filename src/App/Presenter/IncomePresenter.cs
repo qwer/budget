@@ -18,6 +18,5 @@ namespace Budget.App.Presenter
 			get { return income; }
 			set { income = value; }
 		}
-		
 	}
 }

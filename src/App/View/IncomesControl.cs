@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 using Budget.App.Presenter;
 using Budget.App.IoC;
+using Budget.Model;
 
 namespace Budget.App.View
 {
@@ -17,8 +18,7 @@ namespace Budget.App.View
 		public IncomesControl()
 		{
 			InitializeComponent();
-			if (!DesignMode)
-				IoCContainer.Instance.Inject(this);
+			IoCContainer.Instance.Inject(this);
 		}
 
 		private IIncomesPresenter presenter;
@@ -29,8 +29,30 @@ namespace Budget.App.View
 			get { return presenter; }
 			set
 			{
+				if (value == null)
+					return;
 				presenter = value;
+				LoadIncomes();
 			}
+		}
+
+		private void LoadIncomes()
+		{
+			foreach (Income i in Presenter.Incomes)
+				;
+		}
+
+		private void createButton_Click(object sender, EventArgs e)
+		{
+			Presenter.CreateIncome();
+		}
+
+		private void listView1_DoubleClick(object sender, EventArgs e)
+		{
+			if (listView1.SelectedItems.Count != 1)
+				return;
+			Income i = (Income) listView1.SelectedItems[0].Tag;
+			Presenter.ShowIncome(i);
 		}
 	}
 }

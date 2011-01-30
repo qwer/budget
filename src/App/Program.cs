@@ -22,9 +22,6 @@ namespace Budget.App
 			task.Start();
 			task.Wait();
 
-			//TestTx();
-			//TestHistory();
-
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new MainForm());
@@ -60,12 +57,14 @@ namespace Budget.App
 			container.Register<ITxPresenter, TxPresenter>();
 			container.Register<IHistoryPresenter, HistoryPresenter>();
 			container.Register<IIncomesPresenter, IncomesPresenter>();
+			container.Register<IIncomePresenter, IncomePresenter>();
 
 			container.Register<IAccountView, AccountForm>();
 			container.Register<IAccountsView, AccountsControl>();
 			container.Register<ITxView, TxControl>();
 			container.Register<IHistoryView, HistoryControl>();
 			container.Register<IIncomesView, IncomesControl>();
+			container.Register<IIncomeView, IncomeControl>();
 		}
 
 		private static void Connect()

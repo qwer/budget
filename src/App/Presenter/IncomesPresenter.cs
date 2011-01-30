@@ -27,5 +27,9 @@ namespace Budget.App.Presenter
 		{
 			
 		}
+
+		public void CreateIncome()
+		{
+		}
 	}
 }

@@ -72,9 +72,18 @@
     <Compile Include="Presenter\AccountsPresenter.cs" />
     <Compile Include="Presenter\HistoryPresenter.cs" />
     <Compile Include="Presenter\IHistoryPresenter.cs" />
+    <Compile Include="Presenter\IIncomePresenter.cs" />
     <Compile Include="Presenter\IIncomesPresenter.cs" />
+    <Compile Include="Presenter\IncomePresenter.cs" />
     <Compile Include="Presenter\IncomesPresenter.cs" />
     <Compile Include="View\IIncomesView.cs" />
+    <Compile Include="View\IIncomeView.cs" />
+    <Compile Include="View\IncomeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\IncomeControl.Designer.cs">
+      <DependentUpon>IncomeControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\IncomesControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

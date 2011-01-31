@@ -73,8 +73,6 @@ namespace Budget.App.Presenter
 
 		void Save()
 		{
-			//System.Windows.Forms.MessageBox.Show(Account1 == null ? "null" : Account1.Name);
-
 			History history = new History();
 			history.Amount = Amount;
 			history.Date = DateTime.Now;

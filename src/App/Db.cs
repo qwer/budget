@@ -103,5 +103,20 @@ namespace Budget.App
 				Undo(history.AccountSrc);
 			}
 		}
+
+		public void AddIncome(Income income)
+		{
+			//Container.IncomeSet.AddObject(income);
+
+			try
+			{
+				Container.SaveChanges();
+			}
+			catch (Exception e)
+			{
+				Error.Show(e);
+				Container.Detach(income);
+			}
+		}
 	}
 }

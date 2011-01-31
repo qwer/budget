@@ -28,15 +28,38 @@ namespace Budget.App.Presenter
 		IIncomeView view;
 		public void ShowIncome(Income income)
 		{
+			CreateView();
+
+			view.Presenter.Income = income;
+			view.Show();
+		}
+
+		private void CreateView()
+		{
 			if (view == null)
 				view = IoCContainer.Instance.Resolve<IIncomeView>();
-
-			view.Show();
 		}
 
 		public void CreateIncome()
 		{
+			CreateView();
+			Account a = null;
+			
+			try
+			{
+				a = view.Presenter.Accounts.First();
+			}
+			catch (Exception e)
+			{
+				Error.Show(e);
+				return;
+			}
+
 			Income i = new Income();
+			i.Account = a;
+			i.StartDate = DateTime.Now;
+			i.EndDate = DateTime.Now.AddYears(1);
+			i.Period = "";
 			ShowIncome(i);
 		}
 	}

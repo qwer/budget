@@ -21,13 +21,7 @@ namespace Budget.Model
 		{
 			get
 			{
-				switch (Type)
-				{
-					case 0: return AccountType.Regular;
-					case 1: return AccountType.Reserve;
-					case 2: return AccountType.Target;
-					default: return AccountType.Regular;
-				}
+				return GetAccountType(Type);
 			}
 			set
 			{
@@ -38,6 +32,17 @@ namespace Budget.Model
 					case AccountType.Reserve: Type = 1; break;
 					case AccountType.Target: Type = 2; break;
 				}
+			}
+		}
+
+		public static Model.AccountType GetAccountType(int type)
+		{
+			switch (type)
+			{
+				case 0: return AccountType.Regular;
+				case 1: return AccountType.Reserve;
+				case 2: return AccountType.Target;
+				default: return AccountType.Regular;
 			}
 		}
 	}

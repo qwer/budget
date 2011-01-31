@@ -106,7 +106,9 @@ namespace Budget.App
 
 		public void AddIncome(Income income)
 		{
-			//Container.IncomeSet.AddObject(income);
+			bool added = income.EntityState == EntityState.Detached;
+			if (added)
+				Container.IncomeSet.AddObject(income);
 
 			try
 			{
@@ -115,7 +117,8 @@ namespace Budget.App
 			catch (Exception e)
 			{
 				Error.Show(e);
-				Container.Detach(income);
+				if (added)
+					Container.Detach(income);
 			}
 		}
 	}

@@ -60,6 +60,8 @@ namespace Budget.App.Presenter
 			i.StartDate = DateTime.Now;
 			i.EndDate = DateTime.Now.AddYears(1);
 			i.Period = "";
+			i.Name = "";
+
 			ShowIncome(i);
 		}
 	}

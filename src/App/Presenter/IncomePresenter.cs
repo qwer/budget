@@ -55,6 +55,7 @@ namespace Budget.App.Presenter
 		private bool CanSave()
 		{
 			return Income.Account != null &&
+				Income.Name != null &&
 				Income.Name.Length > 0;
 		}
 
@@ -64,8 +65,19 @@ namespace Budget.App.Presenter
 			get
 			{
 				return undoCommand ?? (undoCommand =
-					new SimpleCommand(Save, CanSave));
+					new SimpleCommand(Undo, CanUndo));
 			}
+		}
+
+
+		private void Undo()
+		{
+			db.Undo(Income);
+		}
+
+		private bool CanUndo()
+		{
+			return db.IsModified(Income);
 		}
 
 		public IEnumerable<Account> Accounts

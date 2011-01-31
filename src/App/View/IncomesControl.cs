@@ -36,10 +36,40 @@ namespace Budget.App.View
 			}
 		}
 
+		Dictionary<Income, ListViewItem> items = new Dictionary<Income,ListViewItem>();
+
 		private void LoadIncomes()
 		{
+			listView1.Items.Clear();
+			items.Clear();
 			foreach (Income i in Presenter.Incomes)
-				;
+				AddIncome(i);
+		}
+
+		private void AddIncome(Income i)
+		{
+			ListViewItem li = new ListViewItem();
+			SetItems(i, li);
+			li.Tag = i;
+			listView1.Items.Add(li);
+			items[i] = li;
+			i.PropertyChanged += new PropertyChangedEventHandler(i_PropertyChanged);
+		}
+
+		private static void SetItems(Income i, ListViewItem li)
+		{
+			li.SubItems.Clear();
+			li.SubItems.Add(i.Amount.ToString());
+			li.SubItems.Add(i.Account.Name);
+
+			li.Text = i.Name;
+		}
+
+		void i_PropertyChanged(object sender, PropertyChangedEventArgs e)
+		{
+			Income i = (Income) sender;
+			ListViewItem li = items[i];
+			SetItems(i, li);
 		}
 
 		private void createButton_Click(object sender, EventArgs e)

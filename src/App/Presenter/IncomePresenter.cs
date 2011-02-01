@@ -40,7 +40,7 @@ namespace Budget.App.Presenter
 		private SimpleCommand saveCommand;
 		public ICommand SaveCommand 
 		{
-			get 
+			get
 			{
 				return saveCommand ?? (saveCommand = 
 					new SimpleCommand(Save, CanSave));
@@ -69,7 +69,6 @@ namespace Budget.App.Presenter
 			}
 		}
 
-
 		private void Undo()
 		{
 			db.Undo(Income);
@@ -86,6 +85,33 @@ namespace Budget.App.Presenter
 			{
 				return new List<Account>(db.Container.AccountSet.Where(
 					delegate (Account a) { return Account.GetAccountType(a.Type) == AccountType.Regular; } ));
+			}
+		}
+
+		public IEnumerable<string> Periods
+		{
+			get
+			{
+				return new List<string>(
+					new string[] {
+						"ежедневно",
+						"еженедельно",
+						"ежемесячно",
+						"ежегодно",
+						"период"
+					}); 
+			}
+		}
+
+		public int PeriodTypeIndex
+		{
+			get 
+			{
+				return (int) Income.Period2.Type;
+			}
+			set 
+			{
+				Income.Period2.Type = (Period.PeriodType) value;
 			}
 		}
 	}

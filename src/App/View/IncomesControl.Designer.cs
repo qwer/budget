@@ -33,6 +33,7 @@
 			this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.createButton = new System.Windows.Forms.Button();
+			this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.SuspendLayout();
 			// 
 			// listView1
@@ -40,7 +41,8 @@
 			this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
-            this.columnHeader3});
+            this.columnHeader3,
+            this.columnHeader4});
 			this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listView1.Location = new System.Drawing.Point(0, 33);
 			this.listView1.Name = "listView1";
@@ -58,12 +60,13 @@
 			// columnHeader2
 			// 
 			this.columnHeader2.Text = "Сумма";
+			this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			this.columnHeader2.Width = 139;
 			// 
 			// columnHeader3
 			// 
 			this.columnHeader3.Text = "Периодичность";
-			this.columnHeader3.Width = 210;
+			this.columnHeader3.Width = 167;
 			// 
 			// createButton
 			// 
@@ -75,6 +78,11 @@
 			this.createButton.Text = "Создать";
 			this.createButton.UseVisualStyleBackColor = true;
 			this.createButton.Click += new System.EventHandler(this.createButton_Click);
+			// 
+			// columnHeader4
+			// 
+			this.columnHeader4.Text = "Счет";
+			this.columnHeader4.Width = 169;
 			// 
 			// IncomesControl
 			// 
@@ -95,5 +103,6 @@
 		private System.Windows.Forms.ColumnHeader columnHeader2;
 		private System.Windows.Forms.ColumnHeader columnHeader3;
 		private System.Windows.Forms.Button createButton;
+		private System.Windows.Forms.ColumnHeader columnHeader4;
 	}
 }

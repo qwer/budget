@@ -10,5 +10,7 @@ namespace Budget.App.Presenter
 		IEnumerable<Account> Accounts { get; }
 		ICommand SaveCommand { get; }
 		ICommand UndoCommand { get; }
+		IEnumerable<string> Periods { get; }
+		int PeriodTypeIndex { get; set; }
 	}
 }

@@ -40,6 +40,8 @@ namespace Budget.App.View
 				iIncomePresenterBindingSource.DataSource = presenter;
 				comboBox1.DataSource = presenter.Accounts;
 				presenter.PropertyChanged += presenter_PropertyChanged;
+				comboBox2.DataSource = presenter.Periods;
+				comboBox2.DataBindings.Add("SelectedIndex", presenter, "PeriodTypeIndex", false, DataSourceUpdateMode.OnPropertyChanged);
 			}
 		}
 
@@ -51,7 +53,6 @@ namespace Budget.App.View
 				comboBox1.DataBindings.Add("SelectedItem", Presenter.Income, "Account", false, DataSourceUpdateMode.OnPropertyChanged);
 			}
 		}
-
 		
 		void IIncomeView.Show()
 		{

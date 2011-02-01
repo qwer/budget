@@ -53,19 +53,19 @@ namespace Budget.App.View
 			li.Tag = i;
 			listView1.Items.Add(li);
 			items[i] = li;
-			i.PropertyChanged += new PropertyChangedEventHandler(i_PropertyChanged);
+			i.PropertyChanged += new PropertyChangedEventHandler(Income_PropertyChanged);
 		}
 
 		private static void SetItems(Income i, ListViewItem li)
 		{
 			li.SubItems.Clear();
 			li.SubItems.Add(i.Amount.ToString());
+			li.SubItems.Add(i.Period2.Format);
 			li.SubItems.Add(i.Account.Name);
-
 			li.Text = i.Name;
 		}
 
-		void i_PropertyChanged(object sender, PropertyChangedEventArgs e)
+		private void Income_PropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
 			Income i = (Income) sender;
 			ListViewItem li = items[i];

@@ -32,8 +32,14 @@ namespace Budget.App.View
 				if (value == null)
 					return;
 				presenter = value;
+				presenter.IncomeAdded += presenter_IncomeAdded;
 				LoadIncomes();
 			}
+		}
+
+		void presenter_IncomeAdded(object sender, EventArgs e)
+		{
+			AddIncome((Income) sender);
 		}
 
 		Dictionary<Income, ListViewItem> items = new Dictionary<Income,ListViewItem>();

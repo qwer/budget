@@ -83,6 +83,10 @@ namespace Budget.App
 				GetState(obj).GetModifiedProperties());
 		}
 
+		public event EventHandler HistoryAdded;
+		public event EventHandler AccountAdded;
+		public event EventHandler IncomeAdded;
+
 		public void AddHistory(History history)
 		{
 			history.AccountDest.Balance += history.Amount;
@@ -94,6 +98,7 @@ namespace Budget.App
 			try
 			{
 				Container.SaveChanges();
+				
 			}
 			catch (Exception e)
 			{
@@ -101,12 +106,16 @@ namespace Budget.App
 				Container.Detach(history);
 				Undo(history.AccountDest);
 				Undo(history.AccountSrc);
+				return;
 			}
+
+			if (HistoryAdded != null)
+				HistoryAdded(history, null);
 		}
 
 		public void AddIncome(Income income)
 		{
-			bool added = income.EntityState == EntityState.Detached;
+			bool added = income.EntityState == EntityState.Added;
 			if (added)
 				Container.IncomeSet.AddObject(income);
 
@@ -119,7 +128,11 @@ namespace Budget.App
 				Error.Show(e);
 				if (added)
 					Container.Detach(income);
+				return;
 			}
+
+			if (added && IncomeAdded != null)
+				IncomeAdded(income, null);
 		}
 	}
 }

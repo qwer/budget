@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using Budget.Model;
+using System;
 
 namespace Budget.App.Presenter
 {
@@ -9,5 +10,6 @@ namespace Budget.App.Presenter
 		IEnumerable<Account> Accounts { get; }
 		string Status { get; }
 		void ShowAccount(Account account);
+		event EventHandler AccountAdded;
 	}
 }

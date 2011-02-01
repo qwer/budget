@@ -59,5 +59,11 @@ namespace Budget.App.Presenter
 			accountView.Presenter.Account = account;
 			accountView.Show();
 		}
+
+		public event EventHandler AccountAdded
+		{
+			add { db.AccountAdded += value; }
+			remove { db.AccountAdded -= value; }
+		}
 	}
 }

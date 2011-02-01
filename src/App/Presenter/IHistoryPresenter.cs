@@ -13,5 +13,6 @@ namespace Budget.App.Presenter
 		DateTime EndDate { get; set; }
 		Account Account { get; set; }
 		IEnumerable<History> History { get; }
+		event EventHandler HistoryAdded;
 	}
 }

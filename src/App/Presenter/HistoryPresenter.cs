@@ -90,5 +90,11 @@ namespace Budget.App.Presenter
 			OnPropertyChanged(property);
 			OnPropertyChanged("History");
 		}
+
+		public event EventHandler HistoryAdded
+		{
+			add { db.HistoryAdded += value; }
+			remove { db.HistoryAdded -= value; }
+		}
 	}
 }

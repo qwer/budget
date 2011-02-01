@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Budget.Model;
 
 namespace Budget.App.Presenter
@@ -8,5 +9,6 @@ namespace Budget.App.Presenter
 		IEnumerable<Income> Incomes { get; }
 		void ShowIncome(Income income);
 		void CreateIncome();
+		event EventHandler IncomeAdded;
 	}
 }

@@ -64,5 +64,11 @@ namespace Budget.App.Presenter
 
 			ShowIncome(i);
 		}
+
+		public event EventHandler IncomeAdded
+		{
+			add { db.IncomeAdded += value;  }
+			remove { db.IncomeAdded -= value; }
+		}
 	}
 }

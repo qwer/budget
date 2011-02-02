@@ -76,8 +76,8 @@ namespace Budget.Model
 			{
 				if (Type == PeriodType.Daily || Type == PeriodType.Weekly)
 					throw new Exception();
-				
-				if (day < 1 || day > 31)
+
+				if (value < 1 || value > 31)
 					throw new Exception();
 				
 				if (Type == PeriodType.Monthly && value > 28)
@@ -111,7 +111,7 @@ namespace Budget.Model
 			get { return month; }
 			set
 			{
-				if (Type != PeriodType.Monthly)
+				if (Type != PeriodType.Annual)
 					throw new Exception();
 
 				if (value < 1 || value > 12)
@@ -230,9 +230,9 @@ namespace Budget.Model
 					case PeriodType.Daily:
 						return String.Format("ежедневно{0}", time);
 					case PeriodType.Weekly:
-						return String.Format("еженедельно в {0}{1}", ((DayOfWeek) Day), time);
+						return String.Format("еженедельно в {0}{1}", ((DayOfWeek)(WeekDay % 7)), time);
 					case PeriodType.Monthly:
-						return String.Format("ежемесячно {0}-го{1}", Month, time);
+						return String.Format("ежемесячно {0}-го{1}", Day, time);
 					case PeriodType.Annual:
 						return String.Format("ежегодно {0,2}.{1,2}{2}", Month, Day, time);
 					default:

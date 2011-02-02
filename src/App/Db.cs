@@ -134,5 +134,27 @@ namespace Budget.App
 			if (added && IncomeAdded != null)
 				IncomeAdded(income, null);
 		}
+
+		public void AddAccount(Account account)
+		{
+			bool added = account.EntityState == EntityState.Added;
+			if (added)
+				Container.AccountSet.AddObject(account);
+
+			try
+			{
+				Container.SaveChanges();
+			}
+			catch (Exception e)
+			{
+				Error.Show(e);
+				if (added)
+					Container.Detach(account);
+				return;
+			}
+
+			if (added && AccountAdded != null)
+				AccountAdded(account, null);
+		}
 	}
 }

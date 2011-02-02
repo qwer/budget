@@ -12,5 +12,6 @@ namespace Budget.App.Presenter
 		ICommand UndoCommand { get; }
 		IEnumerable<string> Periods { get; }
 		int PeriodTypeIndex { get; set; }
+		string PeriodString { get; set; }
 	}
 }

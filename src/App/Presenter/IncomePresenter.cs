@@ -35,6 +35,8 @@ namespace Budget.App.Presenter
 		{
 			saveCommand.StateChanged();
 			undoCommand.StateChanged();
+			if (e.PropertyName == "Period")
+				OnPropertyChanged("PeriodString");
 		}
 
 		private SimpleCommand saveCommand;
@@ -112,6 +114,54 @@ namespace Budget.App.Presenter
 			set 
 			{
 				Income.Period2.Type = (Period.PeriodType) value;
+			}
+		}
+
+		public string PeriodString
+		{
+			get
+			{
+				Period p = Income.Period2;
+				switch (p.Type)
+				{
+					case Period.PeriodType.Annual:
+						return String.Format("{0}.{1}", p.Month, p.Day);
+					case Period.PeriodType.Monthly:
+						return p.Day.ToString();
+					case Period.PeriodType.Weekly:
+						return p.WeekDay.ToString();
+					case Period.PeriodType.Daily:
+						return "";
+					default:
+					case Period.PeriodType.Custom:
+						return p.TimeSpan.ToString();
+				}
+			}
+			set
+			{
+				Period p = Income.Period2;
+				value = value.Trim();
+				switch (p.Type)
+				{
+					default:
+					case Period.PeriodType.Custom:
+						p.TimeSpan = TimeSpan.Parse(value);
+						break;
+					case Period.PeriodType.Daily:
+						if (value.Length != 0)
+							throw new Exception();
+						break;
+					case Period.PeriodType.Weekly:
+						p.WeekDay = Int32.Parse(value);
+						break;
+					case Period.PeriodType.Monthly:
+						p.Day = Int32.Parse(value);
+						break;
+					case Period.PeriodType.Annual:
+						p.Month = Int32.Parse(value.Substring(0, value.IndexOf('.')).Trim());
+						p.Day = Int32.Parse(value.Substring(value.IndexOf('.') + 1).Trim());
+						break;
+				}
 			}
 		}
 	}

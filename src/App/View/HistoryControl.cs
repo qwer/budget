@@ -34,7 +34,13 @@ namespace Budget.App.View
 				accountComboBox.DisplayMember = "Name";
 
 				iHistoryPresenterBindingSource.DataSource = presenter;
+				presenter.HistoryAdded += presenter_HistoryAdded;
 			}
+		}
+
+		void presenter_HistoryAdded(object sender, EventArgs e)
+		{
+			iHistoryPresenterBindingSource.ResetBindings(false);
 		}
 	}
 }

@@ -62,7 +62,7 @@ namespace Budget.App.Presenter
 
 		public event EventHandler AccountAdded
 		{
-			add { db.AccountAdded += value; }
+			add    { db.AccountAdded += value; }
 			remove { db.AccountAdded -= value; }
 		}
 	}

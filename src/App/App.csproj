@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="Container.cs" />
     <Compile Include="ObservableObject.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Presenter\AccountsPresenter.cs" />
     <Compile Include="Presenter\HistoryPresenter.cs" />
     <Compile Include="Presenter\IHistoryPresenter.cs" />

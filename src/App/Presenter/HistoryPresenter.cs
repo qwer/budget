@@ -30,7 +30,7 @@ namespace Budget.App.Presenter
 			}
 		}
 
-		private DateTime startDate = DateTime.Now;
+		private DateTime startDate = DateTime.Today;
 		public DateTime StartDate
 		{
 			get { return startDate; }
@@ -43,7 +43,7 @@ namespace Budget.App.Presenter
 			}
 		}
 
-		private DateTime endDate = DateTime.Now;
+		private DateTime endDate = DateTime.Today;
 		public DateTime EndDate
 		{
 			get { return endDate; }
@@ -73,15 +73,17 @@ namespace Budget.App.Presenter
 		{
 			get
 			{
+				DateTime end = endDate.AddDays(1);
+				
 				if (Account == null || Account == nullAccount)
 					return db.Container.HistorySet.Where(h =>
 						h.Date >= startDate &&
-						h.Date <= endDate);
+						h.Date < end);
 
 				return db.Container.HistorySet.Where(
 					h => (h.AccountDest.Id == Account.Id) &&
 					h.Date >= startDate &&
-					h.Date <= endDate);
+					h.Date < end);
 			}
 		}
 
@@ -93,7 +95,7 @@ namespace Budget.App.Presenter
 
 		public event EventHandler HistoryAdded
 		{
-			add { db.HistoryAdded += value; }
+			add    { db.HistoryAdded += value; }
 			remove { db.HistoryAdded -= value; }
 		}
 	}
